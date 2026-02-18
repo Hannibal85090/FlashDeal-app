@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+api_key = st.secrets["GEMINI_API_KEY"]
 
 # إعدادات الصفحة - محور البرمجة
 st.set_page_config(page_title="FlashDeal - Talk. Pay. Done.", page_icon="⚡", layout="centered")
