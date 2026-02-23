@@ -1,67 +1,38 @@
 import streamlit as st
 
-# إعدادات الصفحة والهوية البصرية الجديدة
-st.set_page_config(page_title="FlashDeal - Talk. Pay. Done.", page_icon="⚡", layout="centered")
+# إعدادات الصفحة والهوية البصرية لمشروع FlashDeal
+st.set_page_config(page_title="FlashDeal - My Star", page_icon="💫")
 
-# CSS لتحويل الواجهة إلى الأسود والبنفسجي وتصغير العناصر
-st.markdown("""
-    <style>
-    /* خلفية سوداء بالكامل */
-    .stApp { background-color: #000000; color: #ffffff; }
-    
-    /* تنسيق الأزرار (تصغير وجعلها بنفسجية نيون) */
-    .stButton>button {
-        background-color: #6a0dad; 
-        color: white; 
-        border-radius: 10px;
-        padding: 5px 15px;
-        font-size: 14px;
-        border: 1px solid #bc13fe;
-        box-shadow: 0 0 10px #6a0dad;
-    }
-    
-    /* تصغير مستطيل الإدخال وجعله غامضاً */
-    .stTextInput>div>div>input {
-        background-color: #1a1a1a;
-        color: #bc13fe;
-        border: 1px solid #333;
-        text-align: center;
-        font-size: 20px;
-    }
-    
-    /* إخفاء تسميات الحقول لجعلها أكثر بساطة */
-    label { display: none !important; }
-    
-    /* تنسيق موجة الصوت (محاكاة) */
-    .voice-wave {
-        border: 1px solid #bc13fe;
-        border-radius: 15px;
-        padding: 20px;
-        text-align: center;
-        background: linear-gradient(45deg, #000, #1a0033);
-    }
-    </style>
-    """, unsafe_allow_html=True)
+# العنوان والشعار (Talk. Pay. Done.)
+st.markdown("<h1 style='text-align: center; color: #FF4B4B;'>💫 My FlashDeal Star</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-weight: bold;'>Talk. Pay. Done.</p>", unsafe_allow_html=True)
 
-# العنوان والشعار
-st.markdown("<h1 style='text-align: center; color: #ffffff;'>⚡ FlashDeal</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #bc13fe; letter-spacing: 2px;'>Talk. Pay. Done.</p>", unsafe_allow_html=True)
+# تقسيم الواجهة إلى تبويبات احترافية
+tab1, tab2, tab3 = st.tabs(["🎙️ التحكم الصوتي", "💰 المحفظة والتوكن", "🔒 الحماية"])
 
-# الجزء التقني: التحدث (Talk)
-st.markdown("<div class='voice-wave'>🎙️</div>", unsafe_allow_html=True)
-if st.button("Voice Command"):
-    st.write("Listening...")
+with tab1:
+    st.info("نظام FlashDeal الصوتي جاهز لاستقبال أوامرك")
+    if st.button("ابدأ التسجيل (Voice Command)"):
+        # محاكاة لعملية التعرف على الصوت التي سنطورها لاحقاً
+        st.success("جاري تحليل الصوت... تم التعرف على 'إرسال 50 توكن'")
 
-# الجزء المالي: (Pay) - مستطيل صغير للدولار بدون أرقام ثابتة
-st.markdown("<p style='text-align: center; margin-top:20px;'>Amount</p>", unsafe_allow_html=True)
-amount = st.text_input("Amount", value="$ 1")
+with tab2:
+    # عرض الرموز (Tokens) التي اتفقنا على عدم إهمالها
+    col1, col2 = st.columns(2)
+    col1.metric("رصيد التوكن الحالي", "1,250 FTK")
+    col2.metric("آخر عملية", "-50 FTK")
+    st.write("---")
+    st.write("📋 سجل العمليات الأخيرة متاح هنا لمراجعة صفقاتك.")
 
-# خيارات الدفع (تصغير الأيقونات)
-col1, col2, col3 = st.columns(3)
-with col1: st.button("Wallet")
-with col2: st.button("Card")
-with col3: st.button("Flash")
+with tab3:
+    st.write("درع الحماية لـ FlashDeal:")
+    # خيارات الأمان المتقدمة التي خططنا لها (بصمة، كود سري، إلخ)
+    st.checkbox("تشفير البيانات (End-to-End)", value=True)
+    st.checkbox("طلب الكود السري (الخيار البسيط)", value=True)
+    st.checkbox("التحقق من الهوية البيومترية (Facial Biometrics)", value=False)
 
-# تذييل الصفحة (Done)
-st.markdown("<hr style='border-color: #333;'>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 10px; color: #555;'>Powered by Gemini 1.5 Flash</p>", unsafe_allow_html=True)
+# الشريط الجانبي للإعدادات
+st.sidebar.title("⚙️ إعدادات FlashDeal")
+st.sidebar.write(f"المستخدم النشط: Hannibal85090")
+st.sidebar.divider()
+st.sidebar.write("إصدار MVP 1.0")
