@@ -1,75 +1,147 @@
 import streamlit as st
 
-# FlashDeal - My Star: Advanced Visual Identity
+# FlashDeal - High Quality Parallel Project (Visual Update)
 st.set_page_config(page_title="FlashDeal - My Star", page_icon="💫", layout="centered")
 
-# Custom CSS for Cyber-Tech UI
+# CSS لتطابق الألوان والمؤثرات مع الصورة التي أرسلتها
 st.markdown("""
     <style>
-    .stApp { background-color: #0E1117; color: #FFFFFF; }
-    h1 { color: #00FBFF !important; text-shadow: 0 0 15px #00FBFF; text-align: center; font-family: 'Inter', sans-serif; }
-    .slogan { text-align: center; color: #7000FF; font-weight: bold; font-size: 1.2em; margin-bottom: 30px; }
+    /* الخلفية الداكنة العميقة */
+    .stApp {
+        background-color: #0B0E14;
+        color: #FFFFFF;
+    }
     
-    /* Icon Box Style */
-    .icon-container { display: flex; justify-content: space-around; text-align: center; margin-bottom: 40px; }
-    .icon-box { background: #1E2129; padding: 20px; border-radius: 15px; border: 1px solid #7000FF; width: 100px; }
-    .icon-box:hover { box-shadow: 0 0 20px #7000FF; transform: translateY(-5px); transition: 0.3s; }
-    .icon-label { font-size: 0.8em; margin-top: 10px; color: #00FBFF; }
+    /* العنوان الرئيسي بشعاع النيون */
+    .main-title {
+        color: #00FBFF;
+        text-shadow: 0 0 20px #00FBFF, 0 0 30px #00FBFF;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3em;
+        margin-bottom: 0px;
+    }
     
-    /* Buttons */
+    .slogan {
+        text-align: center;
+        color: #B0B0B0;
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        letter-spacing: 3px;
+    }
+
+    /* لوحة أيقونات كبار السن وسهولة الاستخدام */
+    .icon-bar {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
+    .card {
+        background: rgba(20, 25, 35, 0.9);
+        border: 2px solid #7000FF;
+        border-radius: 20px;
+        padding: 20px;
+        width: 110px;
+        text-align: center;
+        transition: 0.4s;
+    }
+    .card:hover {
+        border-color: #00FBFF;
+        box-shadow: 0 0 25px rgba(0, 251, 255, 0.4);
+        transform: scale(1.1);
+    }
+    .card-label {
+        font-size: 0.7em;
+        color: #00FBFF;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* أزرار النيون التفاعلية */
     .stButton>button {
-        background: linear-gradient(90deg, #00FBFF 0%, #7000FF 100%);
-        color: white; border: none; border-radius: 12px; padding: 10px 25px; font-weight: bold; width: 100%;
+        background: linear-gradient(135deg, #7000FF 0%, #00FBFF 100%);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        padding: 15px;
+        font-weight: bold;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
+    }
+    .stButton>button:hover {
+        box-shadow: 0 0 20px #00FBFF;
+        color: #000;
+    }
+
+    /* تنسيق التبويبات */
+    .stTabs [data-baseweb="tab-list"] { background-color: transparent; }
+    .stTabs [data-baseweb="tab"] {
+        color: #B0B0B0;
+        background-color: #1A1F2B;
+        border-radius: 10px 10px 0 0;
+        margin-right: 5px;
+    }
+    .stTabs [aria-selected="true"] {
+        color: #00FBFF !important;
+        border-bottom: 2px solid #00FBFF !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# Header Section
-st.markdown("<h1>⚡ FLASHDEAL</h1>", unsafe_allow_html=True)
+# --- الواجهة العلوية ---
+st.markdown("<h1 class='main-title'>⚡ FLASHDEAL</h1>", unsafe_allow_html=True)
 st.markdown("<p class='slogan'>Talk. Pay. Done.</p>", unsafe_allow_html=True)
 
-# Visual Icons Section (As per your request for Seniors & Clarity)
-st.markdown(f"""
-    <div class="icon-container">
-        <div class="icon-box">
-            <div style="font-size: 2em;">🛡️</div>
-            <div class="icon-label">SECURITY</div>
+# --- لوحة القيادة (Dashboard) كما في الصورة ---
+st.markdown("""
+    <div class="icon-bar">
+        <div class="card">
+            <div style="font-size: 2.5em;">🛡️</div>
+            <div class="card-label">SECURITY</div>
         </div>
-        <div class="icon-box">
-            <div style="font-size: 2em;">🕒</div>
-            <div class="icon-label">SPEED</div>
+        <div class="card">
+            <div style="font-size: 2.5em;">🕒</div>
+            <div class="card-label">SPEED</div>
         </div>
-        <div class="icon-box">
-            <div style="font-size: 2em;">👑</div>
-            <div class="icon-label">QUALITY</div>
+        <div class="card">
+            <div style="font-size: 2.5em;">👑</div>
+            <div class="card-label">QUALITY</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-# Tabs for Functions
+# --- الأقسام الوظيفية ---
 tab1, tab2, tab3 = st.tabs(["🎙️ Voice Control", "💰 Token Wallet", "🔒 Security Star"])
 
 with tab1:
     st.markdown("### Smart Voice Command")
-    st.info("System is ready. Speak your intent.")
-    if st.button("START VOICE RECORDING"):
-        st.success("Analyzing Voice... 'Send 50 Tokens' recognized.")
+    st.info("System is listening... 'Talk' to start your deal.")
+    if st.button("ACTIVATE MICROPHONE"):
+        st.success("Listening... 'Transfer 100 Tokens' recognized.")
 
 with tab2:
-    st.markdown("### FlashDeal Token Wallet")
-    c1, c2 = st.columns(2)
-    c1.metric("Balance", "1,250 FTK", "Synced")
-    c2.metric("Last Action", "-50 FTK", delta_color="inverse")
+    st.markdown("### My FlashDeal Wallet")
+    col1, col2 = st.columns(2)
+    # معالجة جانب الـ Token كما طلبت
+    col1.metric("Current Balance", "1,250 FTK", delta="Synced")
+    col2.metric("Last Action", "-50 FTK", delta_color="inverse")
     st.divider()
-    st.write("Transaction History: Encrypted & Secure")
+    st.write("Recent Transactions: Secured via Mutual Token Protocol.")
 
 with tab3:
-    st.markdown("### Security Settings")
-    st.checkbox("Face ID Verification", value=True)
-    st.checkbox("Mutual Token Protocol", value=True)
-    st.checkbox("Biometric Compatibility", value=False)
+    st.markdown("### Advanced Security Layers")
+    # خيارات الحماية التي خططنا لها
+    st.checkbox("Face ID Biometrics", value=True)
+    st.checkbox("Mutual Token Verification", value=True)
+    st.checkbox("Body Movement Matching", value=False)
+    st.checkbox("Complex Secret Code", value=True)
 
-# Sidebar
-st.sidebar.markdown("<h2 style='color: #7000FF;'>FlashDeal Star</h2>", unsafe_allow_html=True)
-st.sidebar.write("User: Hannibal85090")
-st.sidebar.write("Status: Connected 🟢")
+# --- الشريط الجانبي (Sidebar) ---
+st.sidebar.markdown("<h2 style='color: #00FBFF;'>My FlashDeal Star</h2>", unsafe_allow_html=True)
+st.sidebar.write(f"User ID: Hannibal85090")
+st.sidebar.write("Device Status: **Connected 🟢**")
+st.sidebar.divider()
+st.sidebar.info("Quality Mode: High Premium / Investor Ready")
+
+if st.sidebar.button("System Reboot"):
+    st.rerun()
