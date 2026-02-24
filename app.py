@@ -1,96 +1,122 @@
 import streamlit as st
 
-# إعدادات الصفحة الاحترافية
-st.set_page_config(page_title="FlashDeal Star - Pro", layout="wide", initial_sidebar_state="collapsed")
+# ضبط إعدادات الصفحة لتجنب تداخل العناصر (إخفاء القائمة الافتراضية)
+st.set_page_config(
+    page_title="My FlashDeal Star - Premium",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-# هندسة التصميم (CSS) لإصلاح "المهزلة" البصرية
+# هندسة الواجهة باستخدام CSS متقدم (Dark Mode UI)
 st.markdown("""
     <style>
-    /* تصميم الخلفية الداكنة العميقة */
-    .stApp { background-color: #05070a; color: #e0e0e0; }
+    /* تحسين الخلفية العامة */
+    .stApp { background-color: #0d1117; color: #c9d1d9; }
     
-    /* بطاقات الأقسام (Glassmorphism) */
-    .section-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 25px;
-        border-radius: 20px;
+    /* تصميم البطاقات الاحترافية */
+    .feature-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        padding: 20px;
+        border-radius: 15px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     
-    /* شعار فلاش ديل المضيء */
-    .brand-title {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 45px; font-weight: 900; letter-spacing: -1px;
+    /* تنسيق شعار FlashDeal */
+    .brand-header {
+        color: #58a6ff;
+        font-family: 'Arial Black', sans-serif;
+        font-size: 38px;
+        margin-bottom: 0px;
     }
+    .slogan { color: #8b949e; font-size: 16px; font-style: italic; }
     
-    .slogan { color: #888; font-size: 18px; margin-top: -15px; margin-bottom: 40px; }
+    /* تأثيرات التوكن والموجة الصوتية */
+    .token-display {
+        font-size: 32px;
+        font-weight: bold;
+        color: #3fb950;
+        text-shadow: 0 0 10px rgba(63, 185, 80, 0.3);
+    }
+    .voice-wave { font-size: 40px; text-align: center; color: #58a6ff; }
     
-    /* الموجة الصوتية والتوكن */
-    .voice-glow { color: #00f2fe; text-shadow: 0 0 15px #00f2fe; font-size: 40px; text-align: center; }
-    .token-value { color: #00f2fe; font-size: 35px; font-weight: bold; }
-    
-    /* الأزرار الاحترافية */
+    /* إصلاح أزرار Streamlit */
     .stButton>button {
-        background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
-        color: white; border: none; border-radius: 12px;
-        padding: 10px 25px; transition: 0.3s;
+        background-color: #238636;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        width: 100%;
+        font-weight: bold;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# الهيدر الرئيسي
-st.markdown('<div class="brand-title">FlashDeal</div>', unsafe_allow_html=True)
-st.markdown('<div class="slogan">Talk. Pay. Done.</div>', unsafe_allow_html=True)
+# --- الشريط الجانبي (إدارة المستخدم والجهاز) ---
+with st.sidebar:
+    st.markdown("### ⚙️ Settings")
+    st.info(f"User: Hannibal85090\n\nDevice: **My FlashDeal Star** (Connected)")
+    st.divider()
+    st.button("FlashDeal-app")
+    st.button("App.py")
+    st.button("Security Dashboard")
 
-# توزيع المحتوى بنظام الشبكة الاحترافي
-col_main, col_side = st.columns([2, 1])
+# --- الواجهة الرئيسية ---
+# الهيدر (دمج هوية FlashDeal)
+col_header, col_empty = st.columns([2, 1])
+with col_header:
+    st.markdown('<p class="brand-header">⚡ FlashDeal</p>', unsafe_allow_html=True)
+    st.markdown('<p class="slogan">Talk. Pay. Done.</p>', unsafe_allow_html=True)
 
-with col_main:
-    # قسم الأوامر الصوتية (من الصورة 1 و 2)
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown("### 🎙️ Smart Voice Command System (#42)")
-    st.markdown('<div class="voice-glow">〰️〰️〰️ 🎙️ 〰️〰️〰️</div>', unsafe_allow_html=True)
-    st.info("Listening for: 'Send 50 Tokens to Star Device'")
+st.write("---")
+
+# توزيع الأقسام (ثلاثة أعمدة متوازنة لمنع التداخل)
+col1, col2, col3 = st.columns(3)
+
+# العمود الأول: الأوامر الصوتية (مستوحى من التصميم الأول)
+with col1:
+    st.markdown('<div class="feature-card">', unsafe_allow_html=True)
+    st.markdown("### 🎙️ Voice Command (#42)")
+    st.markdown('<div class="voice-wave">〰️〰️🎙️〰️〰️</div>', unsafe_allow_html=True)
+    st.caption("Status: Listening...")
+    st.code('"Send 50 Tokens"', language="text")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # قسم المحفظة (معالجة الـ Token)
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown("### 💰 FlashDeal Token Wallet (#43)")
-    c1, c2, c3 = st.columns(3)
-    c1.markdown("**Current Balance**")
-    c1.markdown('<div class="token-value">1,250 FTK</div>', unsafe_allow_html=True)
-    c2.markdown("**Recent Deal**")
-    c2.markdown('<div style="color:#ff4b4b; font-size:25px;">-50 FTK</div>', unsafe_allow_html=True)
-    c3.button("Activate Wallet")
+# العمود الثاني: محفظة التوكن (الجانب المالي)
+with col2:
+    st.markdown('<div class="feature-card">', unsafe_allow_html=True)
+    st.markdown("### 💰 Token Wallet (#43)")
+    st.markdown('<p class="token-display">1,250 FTK</p>', unsafe_allow_html=True)
+    st.write("**Recent Activity:**")
+    st.error("-50 FTK (Recent Deal)")
+    if st.button("Activate Wallet"):
+        st.success("Wallet Synchronized")
     st.markdown('</div>', unsafe_allow_html=True)
 
-with col_side:
-    # نظام الحماية (المواصفات المطلوبة لـ My FlashDeal Star)
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown("### 🛡️ Security Star (#2)")
+# العمود الثالث: نظام حماية النجم (المواصفات الأمنية)
+with col3:
+    st.markdown('<div class="feature-card">', unsafe_allow_html=True)
+    st.markdown("### 🛡️ Star Security (#2)")
     st.checkbox("Face ID Verification", value=True)
     st.checkbox("Mutual Token Protocol", value=True)
     st.checkbox("Fingerprint Scanner", value=True)
     st.checkbox("Body Movement Compatibility")
-    st.divider()
-    st.write("🔐 **Security Code:** Dual Layer (Simple + Complex)")
+    st.caption("🔐 Code: Simple + Complex Active")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # رؤية المستثمر (من الصورة 1)
-    st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown("📈 **Investor Vision 2027**")
+# --- قسم الرؤية والنمو (أسفل الصفحة لتجنب الازدحام) ---
+st.markdown('<div class="feature-card">', unsafe_allow_html=True)
+st.markdown("### 📈 Future Vision & Scaling (Projected 2027)")
+c_grow1, c_grow2 = st.columns([1, 2])
+with c_grow1:
+    st.metric("Market Growth", "320%", "+12% MoM")
+with c_grow2:
     st.progress(65)
-    st.caption("Targeting 320% Market Growth")
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.write("AI-Driven Analytics: Seamless Integration in progress.")
+st.markdown('</div>', unsafe_allow_html=True)
 
-# التذييل الاحترافي
-st.markdown("---")
-footer_l, footer_r = st.columns(2)
-footer_l.caption("Device: My FlashDeal Star (Connected) | Version 3.0")
-if footer_r.button("Commit All Changes"):
+# حفظ التعديلات
+if st.button("Commit Changes & Save to FlashDeal File"):
     st.balloons()
+    st.toast("System Updated Successfully!")
