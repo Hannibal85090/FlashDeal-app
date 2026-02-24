@@ -6,74 +6,123 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-cyan: #22d3ee; --deep-space: #020617; }
-        body { background-color: var(--deep-space); color: white; font-family: 'Inter', sans-serif; }
-        .star-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border: 1px solid rgba(34, 211, 238, 0.3); }
-        .token-glow { box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); }
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; }
+        .neon-text { color: #22d3ee; text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+        .neon-border { border-bottom: 2px solid #22d3ee; }
+        .waveform { display: flex; align-items: center; gap: 3px; height: 40px; }
+        .bar { width: 4px; background: #22d3ee; border-radius: 2px; animation: pulse 1.2s infinite ease-in-out; }
+        @keyframes pulse { 0%, 100% { height: 10px; } 50% { height: 40px; } }
     </style>
 </head>
-<body class="p-4 md:p-10">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex justify-between items-center border-b border-gray-800 pb-6 mb-10">
-            <div>
-                <h1 class="text-4xl font-black tracking-tighter text-cyan-400">FlashDeal</h1>
-                <p class="text-gray-500 italic">Talk. Pay. Done.</p>
+<body class="p-4 md:p-8">
+
+    <header class="flex justify-between items-center mb-8">
+        <div>
+            <div class="flex items-center gap-2">
+                <i class="fas fa-bolt text-3xl neon-text"></i>
+                <h1 class="text-4xl font-bold tracking-wider">FlashDeal</h1>
             </div>
-            <div class="text-right">
-                <div class="text-xs uppercase tracking-widest text-gray-400 mb-1">Security Status</div>
-                <div class="flex items-center gap-2 text-green-400">
-                    <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span>
-                    My FlashDeal Star Connected
-                </div>
-            </div>
+            <p class="text-gray-400 mt-1 italic">Talk. Pay. Done.</p>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-1 space-y-6">
-                <div class="star-gradient p-6 rounded-2xl token-glow">
-                    <h3 class="text-cyan-400 font-bold mb-4 uppercase text-sm tracking-widest">Token Wallet</h3>
-                    <div class="text-3xl font-mono mb-2">1,250.00 FTK</div>
-                    <div class="text-xs text-gray-500">Mutual Token Protocol Active</div>
-                </div>
-
-                <div class="star-gradient p-6 rounded-2xl">
-                    <h3 class="text-gray-300 font-bold mb-4 flex items-center gap-2">
-                        <i class="fas fa-fingerprint text-cyan-400"></i> Biometric Security
-                    </h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between"><span>Face ID</span> <i class="fas fa-check text-cyan-500"></i></li>
-                        <li class="flex justify-between"><span>Body Movement</span> <i class="fas fa-check text-cyan-500"></i></li>
-                        <li class="flex justify-between text-gray-500"><span>Mutual Token</span> <span>Active</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="lg:col-span-2 star-gradient p-8 rounded-2xl relative overflow-hidden">
-                <div class="relative z-10">
-                    <h2 class="text-3xl font-bold mb-6">Future Vision: Scaling 2026</h2>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        Our parallel project focuses on <span class="text-white font-bold">Hardware Integration</span>. 
-                        We are building a lightweight device—The FlashDeal Star—to revolutionize car and home access via voice tokens.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-black/40 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-cyan-400">+320%</div>
-                            <div class="text-xs text-gray-500 uppercase">Growth Projection</div>
-                        </div>
-                        <div class="bg-black/40 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-cyan-400">Zero</div>
-                            <div class="text-xs text-gray-500 uppercase">Fraud Incidents</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
-            </div>
+        <div class="text-right">
+            <span class="bg-cyan-900/50 text-cyan-300 px-3 py-1 rounded-full text-sm border border-cyan-700">
+                <i class="fas fa-link mr-2"></i>My FlashDeal Star: Connected
+            </span>
         </div>
+    </header>
 
-        <div class="mt-12 flex justify-center gap-6">
-            <button class="bg-cyan-500 text-black px-8 py-3 rounded-full font-bold hover:bg-cyan-400 transition">Request Demo</button>
-            <button class="border border-gray-700 px-8 py-3 rounded-full font-bold hover:bg-white/5 transition">Investor Pitch PDF</button>
-        </div>
+    <div class="flex gap-4 mb-6 border-b border-gray-700">
+        <button class="pb-2 neon-border px-4 flex items-center gap-2"><i class="fas fa-microphone"></i> Voice Command</button>
+        <button class="pb-2 text-gray-500 px-4 flex items-center gap-2 hover:text-white"><i class="fas fa-wallet"></i> Token Wallet</button>
+        <button class="pb-2 text-gray-500 px-4 flex items-center gap-2 hover:text-white"><i class="fas fa-star"></i> Security Star</button>
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="glass-card p-6">
+            <div class="flex justify-between items-start mb-4">
+                <h2 class="text-xl font-semibold">#42 Smart Voice Command</h2>
+                <span class="text-xs text-cyan-400 bg-cyan-950 px-2 py-1 rounded">LIVE</span>
+            </div>
+            <div class="flex items-center justify-between bg-slate-900/50 p-6 rounded-lg">
+                <div>
+                    <p class="text-gray-400 mb-2">Listening for your command...</p>
+                    <p class="text-xl font-mono">"Send 50 Tokens"</p>
+                </div>
+                <div class="waveform">
+                    <div class="bar" style="animation-delay: 0.1s"></div>
+                    <div class="bar" style="animation-delay: 0.3s"></div>
+                    <div class="bar" style="animation-delay: 0.2s"></div>
+                    <div class="bar" style="animation-delay: 0.5s"></div>
+                    <div class="bar" style="animation-delay: 0.4s"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card p-6 row-span-2">
+            <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-shield-halved text-cyan-400"></i> #2 My FlashDeal Star Protection
+            </h2>
+            <div class="space-y-4 mt-6">
+                <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded">
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" checked class="w-4 h-4 accent-cyan-500">
+                        <span>Face ID Verification</span>
+                    </label>
+                    <i class="fas fa-check-circle text-green-500"></i>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded">
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" checked class="w-4 h-4 accent-cyan-500">
+                        <span>Mutual Token Protocol</span>
+                    </label>
+                    <i class="fas fa-shield text-cyan-500"></i>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded">
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" class="w-4 h-4 accent-cyan-500">
+                        <span>Body Movement Compatibility</span>
+                    </label>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-800/30 rounded">
+                    <label class="flex items-center gap-3">
+                        <input type="checkbox" class="w-4 h-4 accent-cyan-500">
+                        <span>Biometric Fingerprint</span>
+                    </label>
+                </div>
+            </div>
+            <button class="w-full mt-8 bg-gradient-to-r from-cyan-600 to-blue-600 py-3 rounded-lg font-bold hover:opacity-90 transition">
+                Commit Security Changes
+            </button>
+        </div>
+
+        <div class="glass-card p-6">
+            <h2 class="text-xl font-semibold mb-4 italic">#43 FlashDeal Token Wallet</h2>
+            <div class="grid grid-cols-2 gap-4 mb-6 text-center">
+                <div class="border-r border-gray-700">
+                    <p class="text-gray-400 text-sm">Current Balance</p>
+                    <p class="text-2xl font-bold">1,250 <span class="text-cyan-400 text-sm">FTK</span></p>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-sm">Last Transaction</p>
+                    <p class="text-2xl font-bold text-red-400">-50 <span class="text-sm">FTK</span></p>
+                </div>
+            </div>
+            <div class="bg-black/20 p-3 rounded text-xs">
+                <p class="text-green-400 font-mono italic text-center">Status: Safe & Encrypted (Token Active)</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="mt-8 flex justify-between items-center text-gray-500 text-sm">
+        <div>User ID: Hanniball85090</div>
+        <div class="flex gap-4">
+            <span>v3.00.2.20</span>
+            <span class="text-cyan-400 cursor-pointer underline">Terms of Security</span>
+        </div>
+    </footer>
+
 </body>
 </html>
