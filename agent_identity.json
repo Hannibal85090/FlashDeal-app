@@ -1,0 +1,20 @@
+{
+  "agent_id": "FlashDeal-Star-Alpha-01",
+  "name": "FlashDeal Star AI Financial Agent",
+  "compliance": "ERC-8004 Verifiable Trust Standard",
+  "capabilities": [
+    {
+      "type": "Voice_Recognition",
+      "description": "Processing voice commands: Talk. Pay. Done."
+    },
+    {
+      "type": "Biometric_Security",
+      "description": "Face and Fingerprint multi-layer authentication."
+    }
+  ],
+  "endpoints": {
+    "live_demo": "https://flashdeal-app-p4pspbxmgynh4igwpdgyea.streamlit.app/"
+  },
+  "agent_wallet": "0x74794C6173684465616C537461724167656E74"
+}
+
