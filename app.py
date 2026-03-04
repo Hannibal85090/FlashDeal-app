@@ -1,114 +1,85 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 import datetime
-import time
 
-# --- 1. الإعدادات الأساسية والهوية ---
+# --- إعدادات النخبة ---
 st.set_page_config(page_title="My FlashDeal Star", page_icon="⭐", layout="wide")
 
-now = datetime.datetime.now()
-dt_string = now.strftime("%A, %d %B %Y | %H:%M:%S")
-
-# --- 2. محرك الجماليات والحركة (CSS) ---
-st.markdown(f"""
+# تصميم واجهة المستخدم (UI) - استلهام أرقى التطبيقات [cite: 2026-02-16]
+st.markdown("""
     <style>
-    .stApp {{ background: linear-gradient(180deg, #E0F2F1 0%, #FFFFFF 100%); }}
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+    html, body, [class*="css"] { font-family: 'Tajawal', sans-serif; background-color: #F0F4F8; }
     
-    /* أنيميشن الشعار (البرق والنجمة) */
-    @keyframes flash-glow {{
-        0%, 100% {{ transform: scale(1); filter: drop-shadow(0 0 5px #FFD700); }}
-        50% {{ transform: scale(1.1); filter: drop-shadow(0 0 20px #FFD700); color: #FFD700; }}
-    }}
-    .main-logo {{ font-size: 60px; text-align: center; animation: flash-glow 2s infinite; font-weight: bold; cursor: default; }}
+    /* أنيميشن البرق والنجمة */
+    .hero-header { text-align: center; padding: 20px; }
+    .flash-star { font-size: 50px; animation: glow 1.5s infinite alternate; }
+    @keyframes glow { from { filter: drop-shadow(0 0 5px #FFD700); } to { filter: drop-shadow(0 0 20px #FFD700); } }
     
-    /* تنسيق الثمن والشفافية */
-    .price-container {{ 
-        background: #f8f9fa; border-left: 5px solid #2E8B57; padding: 15px; 
-        border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }}
-    .price-val {{ color: #2E8B57; font-size: 35px; font-weight: bold; }}
+    /* بطاقة الشراء الاحترافية (شفافية الثمن) */
+    .deal-card { background: white; border-radius: 25px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 1px solid #E1E8ED; }
+    .price-display { background: #2E8B57; color: white; padding: 15px 30px; border-radius: 50px; font-size: 35px; font-weight: bold; display: inline-block; margin: 20px 0; }
     
-    /* موجات الوكيل الذكي الحساسة */
-    .wave-bar {{
-        display: inline-block; background: #2E8B57; width: 6px; margin: 2px;
-        border-radius: 5px; animation: sensitive-pulse 1.2s infinite ease-in-out;
-    }}
-    @keyframes sensitive-pulse {{
-        0%, 100% {{ height: 15px; opacity: 0.5; }}
-        50% {{ height: 60px; opacity: 1; }}
-    }}
+    /* الوكيل الذكي وموجات الصوت */
+    .voice-waves { display: flex; align-items: flex-end; justify-content: center; height: 80px; gap: 4px; background: #000; border-radius: 15px; padding: 15px; }
+    .v-bar { width: 6px; background: #00FFCC; border-radius: 5px; animation: v-pulse 1s infinite ease-in-out; }
+    @keyframes v-pulse { 0%, 100% { height: 10px; } 50% { height: 60px; } }
     </style>
-    <div style='text-align: right; font-weight: bold; color: #1a1a1a;'>{dt_string}</div>
-    <div class='main-logo'>⚡ ⭐ ⚡</div>
-    <h1 style='text-align: center; color: #1a1a1a;'>My FlashDeal Star</h1>
-    <p style='text-align: center; font-size: 1.2rem; font-style: italic;'>Talk. Pay. Done.</p>
     """, unsafe_allow_html=True)
 
-# --- 3. نظام التنقل الحديث (استبدال i بـ ؟) ---
+# الهيدر المتحرك
+st.markdown("<div class='hero-header'><div class='flash-star'>⚡ ⭐ ⚡</div><h1>My FlashDeal Star</h1><p>Talk. Pay. Done.</p></div>", unsafe_allow_html=True)
+
+# قائمة التنقل (تحديث الرموز: المساعدة بـ ؟ وسجل العمليات بـ ورق)
 selected = option_menu(
     menu_title=None,
-    options=["الأمان", "سجل الصفقات", "إبرام الصفقة", "الوكيل الذكي", "Aide / Help"],
-    icons=["shield-lock", "list-check", "lightning-charge", "robot", "question-circle"], 
+    options=["الأمان", "سجل الشفافية", "إبرام الصفقة", "الوكيل الذكي", "Aide / Help"],
+    icons=["shield-lock", "receipt", "lightning-charge", "person-video3", "question-circle"], 
     default_index=2, orientation="horizontal",
-    styles={
-        "container": {"padding": "0!important", "background-color": "#fafafa"},
-        "nav-link-selected": {"background-color": "#2E8B57"}
-    }
+    styles={"nav-link-selected": {"background-color": "#2E8B57"}}
 )
 
-# --- 4. الأقسام البرمجية المعتمدة ---
-
+# 1. إبرام الصفقة (نظيف وواضح - ثمن ومثمن فقط)
 if selected == "إبرام الصفقة":
-    st.markdown("### 🛒 ركن الشفافية: الثمن والمثمن")
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        st.image("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600", caption="المثمن: سماعات ذكية بريميوم")
-    with col2:
-        st.markdown("<div class='price-container'>", unsafe_allow_html=True)
-        st.subheader("Wireless Headphones - Gold Star Edition")
-        st.write("أفضل سعر متاح حالياً عبر جيمين لضمان الإيجاب والقبول.")
-        st.markdown("<span class='price-val'>$99.99</span> <small style='text-decoration:line-through;'>$199.99</small>", unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-        
-        if st.button("إتمام الصفقة فوراً / Confirm Deal"):
-            with st.spinner("جاري تأمين التوكن والتحقق من الهوية..."):
-                time.sleep(1.5)
-                st.balloons()
-                st.success("تم الإيجاب والقبول بنجاح. Talk. Pay. Done.")
+    st.markdown("<div class='deal-card'>", unsafe_allow_html=True)
+    c1, c2 = st.columns([1, 1])
+    with c1:
+        st.image("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800", use_container_width=True)
+    with c2:
+        st.title("Premium Wireless Headphones")
+        st.write("الإصدار الماسي - عرض حصري بنظام الإيجاب والقبول اللحظي.")
+        # السعر نظيف تماماً بدون أكواد برمجية ظاهرة
+        st.markdown("<div class='price-display'>$99.99</div>", unsafe_allow_html=True)
+        if st.button("BUY NOW / إبرام الصفقة", use_container_width=True):
+            st.balloons()
+            st.success("تم الإيجاب والقبول. اتمت العملية بنجاح!")
+    st.markdown("</div>", unsafe_allow_html=True)
 
+# 2. الوكيل الذكي (لغة إشارة + حساس نبرة)
 elif selected == "الوكيل الذكي":
-    st.markdown("### 🤖 وكيل جيمين الذكي (حساس للنبرة)")
-    tab1, tab2 = st.tabs(["🎤 التفاعل الصوتي", "✍️ الخصوصية واللمس"])
-    
-    with tab1:
-        st.write("الوكيل يستشعر الآن أبسط اهتزازات نبرة صوتك:")
-        wave_html = "<div style='text-align:center; background:#1a1a1a; padding:30px; border-radius:20px;'>" + \
-                    "".join([f"<div class='wave-bar' style='animation-delay:{i*0.05}s'></div>" for i in range(35)]) + "</div>"
-        st.markdown(wave_html, unsafe_allow_html=True)
-        st.info("جيمين: 'أنا مسجل عندك.. حللت نبرة صوتك، يمكنك طلب أي منتج الآن'")
-        
-    with tab2:
-        st.text_input("للعملاء اللمسيين وعشاق السرية، أدخل أمرك هنا:")
-        st.write("✨ جميع الأوامر النصية مشفرة بالكامل.")
+    st.subheader("تجربة الوكيل الذكي العصري")
+    v1, v2 = st.columns(2)
+    with v1:
+        st.markdown("#### 🎤 تحليل نبرة الصوت")
+        bars = "".join([f"<div class='v-bar' style='animation-delay:{i*0.1}s'></div>" for i in range(25)])
+        st.markdown(f"<div class='voice-waves'>{bars}</div>", unsafe_allow_html=True)
+        st.info("جيمين: 'نبرة صوتك مسجلة.. أنا أستشعر أدق الاهتزازات لتأمين طلبك.'")
+    with v2:
+        st.markdown("#### 🖐️ لغة الإشارة والإيماءات")
+        st.write("الوكيل يراقب حركات اليد الآن لتنفيذ الأوامر (دعم كامل لأصحاب الهمم).")
+        st.image("https://images.unsplash.com/photo-1516733968668-dbdce39c46ef?w=400", caption="كاميرا التحليل النشط")
 
+# 3. الأمان (نظام التوكن والمفتاح الذكي)
 elif selected == "الأمان":
     st.markdown("### 🛡️ مركز الأمان الشامل")
     st.toggle("بصمة الوجه والبيومتري", value=True)
     st.toggle("نظام التوكن المتبادل (Mutual Token)", value=True)
-    st.toggle("تأمين جهاز السيارة (FlashDeal Star Key)", value=False)
-    st.success("نظام الأمان نشط ومتصل بقاعدة بيانات التوكنات المشفرة.")
+    st.toggle("تأمين جهاز السيارة (FlashDeal Star Key)", value=True) [cite: 2026-02-20]
+    st.success("النظام محمي بالكامل ومرتبط بقاعدة بيانات التوكنات المشفرة.")
 
-elif selected == "سجل الصفقات":
+# 4. سجل الشفافية
+elif selected == "سجل الشفافية":
     st.markdown("### 📜 سجل الشفافية المالية")
-    st.table([
-        {"التاريخ": now.strftime("%Y-%m-%d"), "المنتج": "Wireless Headphones", "الثمن": "$99.99", "الحالة": "مكتمل ✅"}
-    ])
+    st.table([{"التاريخ": "2026-03-04", "المنتج": "Wireless Headphones", "الثمن": "$99.99", "الحالة": "مكتمل ✅"}])
 
-elif selected == "Aide / Help":
-    st.markdown("### ❓ مركز المساعدة المطور (Aide)")
-    st.write("كيف يمكننا مساعدتك اليوم في بيئة FlashDeal؟")
-    with st.expander("كيفية استخدام الأمر الصوتي؟"):
-        st.write("فقط قل 'اتمم الصفقة' وسيقوم جيمين بتحليل نبرة صوتك ومطابقتها مع التوكن الخاص بك.")
-
-# --- 5. التذييل (Footer) لملء الفراغ ---
-st.markdown("<br><br><br><div style='text-align: center; color: #888; border-top: 1px solid #ddd; padding: 20px;'>My FlashDeal Star © 2026 | Talk. Pay. Done.</div>", unsafe_allow_html=True)
+st.markdown("<br><hr><center>My FlashDeal Star © 2026 | Talk. Pay. Done.</center>", unsafe_allow_html=True)
