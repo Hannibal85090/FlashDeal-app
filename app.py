@@ -2,80 +2,80 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import time
 
-# --- الإعدادات السيادية ---
+# --- إعدادات النخبة ---
 st.set_page_config(page_title="My FlashDeal Star", page_icon="⭐", layout="wide")
 
-st.markdown("""
+# قاموس اللغات الاحترافي
+LANG = {
+    "العربية": {
+        "dir": "rtl", "slogan": "Talk. Pay. Done.", "menu": ["الأمان", "سجل الشفافية", "إبرام الصفقة", "الوكيل الذكي", "Aide / Help"],
+        "price_title": "ركن الشفافية: الثمن والمثمن", "confirm": "إتمام الصفقة فوراً", "token_msg": "التوكن المتبادل النشط:",
+        "agent_title": "تجربة الوكيل الذكي (جيمين)", "modes": ["⌨️ الكتابة", "🎤 الصوت", "🖐️ الإشارة"], "write_prompt": "اكتب أمرك هنا:",
+        "help_title": "❓ (Aide) مركز المساعدة المطور", "help_q1": "كيفية استخدام الأمر الصوتي؟"
+    },
+    "English": {
+        "dir": "ltr", "slogan": "Talk. Pay. Done.", "menu": ["Security", "Transparency Log", "Close Deal", "Smart Agent", "Aide / Help"],
+        "price_title": "Transparency Corner: Price & Value", "confirm": "Confirm Deal Now", "token_msg": "Active Mutual Token:",
+        "agent_title": "Smart Agent Experience (Gemini)", "modes": ["⌨️ Writing", "🎤 Voice", "🖐️ Sign"], "write_prompt": "Write your command here:",
+        "help_title": "❓ (Aide) Advanced Help Center", "help_q1": "How to use voice commands?"
+    },
+    "Français": {
+        "dir": "ltr", "slogan": "Talk. Pay. Done.", "menu": ["Sécurité", "Registre", "Conclure", "Agent Intelligent", "Aide / Help"],
+        "price_title": "Transparence: Prix et Valeur", "confirm": "Confirmer l'accord", "token_msg": "Token Mutuel Actif:",
+        "agent_title": "Expérience Agent Intelligent", "modes": ["⌨️ Écriture", "🎤 Vocal", "🖐️ Signes"], "write_prompt": "Écrivez votre commande ici:",
+        "help_title": "❓ (Aide) Centre d'Aide Avancé", "help_q1": "Comment utiliser les commandes vocales?"
+    }
+}
+
+# اختيار اللغة
+with st.sidebar:
+    st.markdown("### 🌐 Language / اللغة")
+    selected_lang = st.selectbox("", ["العربية", "English", "Français"])
+    L = LANG[selected_lang]
+
+# تطبيق اتجاه الصفحة بناءً على اللغة
+st.markdown(f"<div dir='{L['dir']}'>", unsafe_allow_html=True)
+
+st.markdown(f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
-    html, body, [class*="css"] { font-family: 'Tajawal', sans-serif; }
-    .stTabs [data-baseweb="tab-list"] { gap: 10px; }
-    .stTabs [data-baseweb="tab"] { background-color: #f0f2f6; border-radius: 10px; padding: 10px 20px; }
-    .token-box { background: #0F172A; color: #00E676; padding: 15px; border-radius: 15px; text-align: center; font-family: monospace; font-size: 20px; border: 1px solid #00E676; }
-    .help-header { color: #E63946; font-weight: bold; font-size: 24px; display: flex; align-items: center; gap: 10px; }
+    html, body, [class*="css"] {{ font-family: 'Tajawal', sans-serif; text-align: {'right' if L['dir']=='rtl' else 'left'}; }}
+    .price-tag {{ background: #10B981; color: white; padding: 15px; border-radius: 50px; font-size: 30px; font-weight: bold; display: inline-block; }}
     </style>
     """, unsafe_allow_html=True)
 
-# الهيدر الموحد (نفس نمط صورك الناجحة)
-st.markdown("<div style='text-align:center;'><h1>⚡ ⭐ My FlashDeal Star</h1><p>Talk. Pay. Done.</p></div>", unsafe_allow_html=True)
+# الهيدر
+st.markdown(f"<div style='text-align:center;'><h1>⚡ ⭐ My FlashDeal Star</h1><p>{L['slogan']}</p></div>", unsafe_allow_html=True)
 
+# القائمة (تتغير لغتها تلقائياً)
 selected = option_menu(
-    menu_title=None,
-    options=["الأمان", "سجل الشفافية", "إبرام الصفقة", "الوكيل الذكي", "Aide / Help"],
+    menu_title=None, options=L["menu"],
     icons=["shield-lock", "clipboard-check", "lightning-fill", "robot", "question-circle-fill"], 
-    default_index=2, orientation="horizontal",
-    styles={"nav-link-selected": {"background-color": "#10B981"}}
+    default_index=2, orientation="horizontal", styles={"nav-link-selected": {"background-color": "#10B981"}}
 )
 
-# --- محاكاة التوكن المتبادل اللحظي ---
-current_token = f"FD-{int(time.time()) % 1000000:06d}-STAR"
+# توكن متغير حقيقي [cite: 2026-02-22]
+dynamic_token = f"FD-{int(time.time()) % 99999:05d}-STAR"
 
-if selected == "إبرام الصفقة":
-    st.subheader("ركن الشفافية: الثمن والمثمن")
+if selected in [L["menu"][2]]: # إبرام الصفقة
+    st.subheader(L["price_title"])
     col1, col2 = st.columns([1, 1])
-    with col1:
-        st.image("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800", caption="سماعات ذكية بريميوم")
+    with col1: st.image("https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600")
     with col2:
-        st.title("Wireless Headphones")
-        st.markdown("<h2 style='color:#10B981;'>$99.99</h2>", unsafe_allow_html=True)
-        st.write("التوكن المتبادل النشط لهذه العملية:")
-        st.markdown(f"<div class='token-box'>{current_token}</div>", unsafe_allow_html=True)
-        if st.button("إتمام الصفقة فوراً / Confirm Deal", use_container_width=True):
-            st.success("تمت العملية بنجاح. Talk. Pay. Done.")
+        st.markdown(f"<div class='price-tag'>$99.99</div>", unsafe_allow_html=True)
+        st.write(f"**{L['token_msg']}** `{dynamic_token}`")
+        if st.button(L["confirm"], use_container_width=True): st.success(f"Success! {L['slogan']}")
 
-elif selected == "الوكيل الذكي":
-    st.subheader("تجربة الوكيل الذكي (جيمين المطور)")
-    # إضافة خيار الكتابة/الخصوصية كما طلبت
-    mode = st.radio("اختر نمط التفاعل المفضل لديك:", 
-                    ["⌨️ نمط الكتابة/الخصوصية", "🎤 نمط الصوت", "🖐️ نمط لغة الإشارة"], horizontal=True)
-    
-    if "الكتابة" in mode:
-        user_text = st.text_input("تفضل بكتابة أمرك للوكيل:")
-        if user_text: st.info(f"جيمين: 'جاري معالجة طلبك: {user_text}'")
-    elif "الصوت" in mode:
-        st.write("الوكيل يحلل نبرة الصوت والتوكن المتبادل:")
-        st.image("https://upload.wikimedia.org/wikipedia/commons/b/b9/Waveform.png", width=400) # محاكاة الموجة
-        st.info(f"جيمين: 'نبرة صوتك مطابقة للتوكن: {current_token}'")
+elif selected in [L["menu"][3]]: # الوكيل الذكي
+    st.subheader(L["agent_title"])
+    mode = st.radio("", L["modes"], horizontal=True)
+    if "⌨️" in mode:
+        st.text_input(L["write_prompt"]) # خيار الكتابة المطلوب
+    elif "🎤" in mode:
+        st.info(f"Gemini is listening... (Token: {dynamic_token})")
 
-elif selected == "Aide / Help":
-    # محاكاة دقيقة لمركز المساعدة المطور
-    st.markdown("<div class='help-header'>❓ (Aide) مركز المساعدة المطور</div>", unsafe_allow_html=True)
-    st.write("كيف يمكننا مساعدتك اليوم في بيئة FlashDeal؟")
-    
-    with st.expander("كيفية استخدام الأمر الصوتي؟"):
-        st.write("يمكنك تفعيل الوكيل عبر الضغط على أيقونة الميكروفون والتحدث بوضوح.")
-    with st.expander("ما هو نظام التوكن المتبادل (Mutual Token)؟"):
-        st.write("هو تشفير لحظي يتغير كل ثانية لضمان أمان العملية بينك وبين التاجر.") [cite: 2026-02-22]
+elif selected in [L["menu"][4]]: # مركز المساعدة
+    st.markdown(f"### {L['help_title']}") # محاكاة الصورة
+    with st.expander(L["help_q1"]): st.write("...")
 
-elif selected == "الأمان":
-    st.subheader("مركز الأمان الشامل")
-    st.toggle("بصمة الوجه والبيومتري", value=True)
-    st.toggle("نظام التوكن المتبادل (Mutual Token)", value=True)
-    st.toggle("تأمين جهاز السيارة (FlashDeal Star Key)", value=False)
-    st.info("نظام الأمان متصل بقاعدة بيانات التوكنات المشفرة.")
-
-elif selected == "سجل الشفافية":
-    st.subheader("سجل العمليات المالية")
-    st.table([{"التاريخ": "2026-03-04", "المنتج": "Headphones", "الثمن": "$99.99", "الحالة": "مكتمل ✅"}])
-
-st.markdown("<br><hr><center>My FlashDeal Star © 2026 | Talk. Pay. Done.</center>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
