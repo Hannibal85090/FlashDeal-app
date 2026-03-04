@@ -1,97 +1,74 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import datetime
+import time
 
-# --- 1. إعدادات الهوية البصرية FlashDeal Star ---
-st.set_page_config(page_title="FlashDeal Star", page_icon="⭐", layout="centered")
+# --- 1. إعدادات الهوية والتوقيت الحقيقي ---
+st.set_page_config(page_title="FlashDeal Star MVP", page_icon="⭐", layout="wide")
 
-# تطبيق التدرج اللوني (سماوي إلى أبيض) وتنسيق الأزرار والنجوم
-st.markdown("""
-    <style>
-    .stApp {
-        background: linear-gradient(180deg, #87CEEB 0%, #F0F8FF 100%);
-    }
-    .stButton>button {
-        background-color: #2E8B57 !important;
-        color: white !important;
-        border-radius: 25px !important;
-        font-weight: bold !important;
-        width: 100%;
-        border: none !important;
-        height: 3em;
-    }
-    .star-rating {
-        color: #FFD700;
-        font-size: 1.5rem;
-        text-align: center;
-        margin-top: -15px;
-    }
-    .product-title {
-        text-align: center;
-        font-weight: bold;
-        color: #1E1E1E;
-        margin-top: 10px;
-    }
-    </style>
+# جلب التاريخ الحالي (اليوم 04 مارس 2026)
+current_now = datetime.datetime.now()
+formatted_date = current_now.strftime("%A, %d %B %Y")
+formatted_time = current_now.strftime("%H:%M:%S")
+
+st.markdown(f"""
+    <div style='text-align: right; color: #2E8B57; font-weight: bold; padding: 10px;'>
+        📅 {formatted_date} | 🕒 {formatted_time}
+    </div>
     """, unsafe_allow_html=True)
 
-# --- 2. منطق الوكيل الذكي (FlashDeal Agent Logic) ---
-class FlashDealAgent:
-    def __init__(self):
-        self.slogan = "Talk. Pay. Done."
-        self.vision = "Simple Production [cite: 2026-02-21]"
-    
-    def execute_deal(self):
-        return f"Executing with: {self.slogan}"
+# --- 2. جماليات البرق والنجمة (Visual Motivation) ---
+st.markdown("""
+    <style>
+    .stApp { background: linear-gradient(135deg, #87CEEB 0%, #E0F7FA 50%, #FFFFFF 100%); }
+    @keyframes lightning { 0% { opacity: 0.3; } 50% { opacity: 1; color: #FFD700; } 100% { opacity: 0.3; } }
+    .star-flash { font-size: 45px; text-align: center; animation: lightning 1.5s infinite; font-weight: bold; margin-bottom: 20px; }
+    .secure-card { background: rgba(255,255,255,0.9); border-radius: 20px; padding: 25px; border: 2px solid #2E8B57; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: auto; max-width: 600px; }
+    </style>
+    <div class='star-flash'>⚡ My FlashDeal Star ⭐</div>
+    """, unsafe_allow_html=True)
 
-agent = FlashDealAgent()
-
-# --- 3. نظام التنقل (النقاط الثلاث) ---
-# هذا يحاكي النقاط التي تظهر في الصور أسفل الشاشة
+# --- 3. نظام التنقل الشامل ---
 selected = option_menu(
-    menu_title=None, 
-    options=["الإعدادات", "إبرام الصفقة", "الوكيل الذكي"], 
-    icons=["gear", "stars", "robot"], 
-    menu_icon="cast", 
-    default_index=1,
+    menu_title=None,
+    options=["الإعدادات", "سجل المعاملات", "إبرام الصفقة", "الوكيل الذكي", "مركز المساعدة"],
+    icons=["shield-lock", "clock-history", "stars", "robot", "patch-question"],
+    default_index=2,
     orientation="horizontal",
-    styles={
-        "container": {"padding": "0!important", "background-color": "transparent"},
-        "nav-link": {"font-size": "14px", "text-align": "center", "margin":"0px"},
-        "nav-link-selected": {"background-color": "#2E8B57"},
-    }
+    styles={"nav-link-selected": {"background-color": "#2E8B57"}}
 )
 
-# --- 4. محتوى الصفحات ---
-
+# --- 4. الشاشات المتكاملة ---
 if selected == "إبرام الصفقة":
-    # عرض صورة المنتج (السماعات) من مجلد assets
-    try:
-        st.image("assets/1000022439.jpg", use_container_width=True)
-    except:
-        st.image("https://via.placeholder.com/400x300/87CEEB/FFFFFF?text=FlashDeal+Star", use_container_width=True)
+    st.markdown("<div class='secure-card'>", unsafe_allow_html=True)
+    st.image("https://via.placeholder.com/400x300/87CEEB/FFFFFF?text=Premium+Deal", use_container_width=True)
+    st.markdown("<h2 style='text-align: center;'>Wireless Headphones</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #FFD700; text-align: center; font-size: 22px;'>⭐⭐⭐⭐⭐</p>", unsafe_allow_html=True)
+    st.markdown("<div style='text-align: center; font-size: 28px; font-weight: bold; color: #2E8B57;'>$99.99 <span style='color: #888; text-decoration: line-through; font-size: 18px;'>$199.99</span></div>", unsafe_allow_html=True)
     
-    st.markdown('<h2 class="product-title">Wireless Headphones</h2>', unsafe_allow_html=True)
-    # النجوم تحت العنوان مباشرة لإظهار الجودة العالية كما اتفقنا
-    st.markdown('<p class="star-rating">⭐⭐⭐⭐⭐ (4.9)</p>', unsafe_allow_html=True)
-    
-    st.write("Experience rich, wireless sound.")
-    st.markdown("### $99.99 <span style='color:grey; text-decoration:line-through; font-size:15px'>$199.99</span>", unsafe_allow_html=True)
-    
-    if st.button("Buy Now / إتمام الصفقة"):
-        st.balloons()
-        st.success(f"Success! {agent.execute_deal()}")
+    if st.button("Talk. Pay. Done. ✅"):
+        with st.spinner("جاري تأمين الصفقة بيومترياً..."):
+            time.sleep(1.5)
+            st.balloons()
+            st.success(f"تمت الصفقة بنجاح في {formatted_time}!")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+elif selected == "سجل المعاملات":
+    st.markdown(f"### 📜 سجل الإنجازات (محدث: {formatted_date})")
+    # السجل يبدأ من اليوم ويتطلع للمستقبل
+    st.write(f"✅ **{formatted_date}**: تم إطلاق النسخة المتكاملة مع عداد الوقت الحقيقي.")
+    st.write("🚀 **الخطوة القادمة**: ربط نظام الـ SIM Card ووسائل الدفع المتطورة [cite: 2026-02-20].")
 
 elif selected == "الإعدادات":
-    st.markdown("## ⚙️ Settings & Security")
-    st.write("خيارات الأمان المتقدمة: بصمة، وجه، ورمز سري [cite: 2026-02-20].")
-    st.checkbox("تفعيل البطاقة البيومترية")
-    st.checkbox("ربط My FlashDeal Star بالسيارة")
+    st.markdown("### 🛡️ مركز الأمان (Security Hub)")
+    st.toggle("تفعيل بصمة الوجه (Face ID)", value=True)
+    st.toggle("نظام التوكن المتبادل (Mutual Token)", value=True) [cite: 2026-02-20]
 
 elif selected == "الوكيل الذكي":
-    st.markdown(f"## 🤖 FlashDeal AI Assistant")
-    st.info(f"Vision: {agent.vision}")
-    st.write("توجيه الصوت والتقاط الإشارات الحيوية قيد التشغيل...")
-    
-    if st.button('Execute Trading Command / تنفيذ أمر التداول'):
-        st.success(agent.execute_deal())
-        st.write("تم تحليل حركة الجسم ومطابقة البصمة.")
+    st.markdown("### 🤖 الوكيل الذكي (Smart Agent)")
+    st.info("الوكيل جاهز لاستقبال الأوامر الصوتية أو النصية [cite: 2026-02-21].")
+    st.text_input("أدخل أمرك للوكيل...")
+
+elif selected == "مركز المساعدة":
+    st.markdown("### 🆘 الدعم الفني")
+    st.write("فريق FlashDeal Star في خدمتك لضمان أمان صفقاتك.")
