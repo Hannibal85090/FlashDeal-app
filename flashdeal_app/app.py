@@ -105,14 +105,20 @@ elif page == t["deal"]:
         st.write("💲 Special Price: $99.99 (instead of $199.99)")
         if st.button("Confirm Deal"):
             st.success("✅ Deal Confirmed!")
+            st.balloons()
+            st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
     elif lang == "ar":
         st.write("💲 السعر الخاص: 99.99$ (بدلاً من 199.99$)")
         if st.button("إتمام الصفقة فوراً"):
-            st.success("✅ تم تأكيد الصفقة!")
+            st.success("✅ الصفقة تمت بنجاح!")
+            st.balloons()
+            st.markdown("<h2 style='color:red;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
     else:
         st.write("💲 Prix spécial: 99.99$ (au lieu de 199.99$)")
         if st.button("Confirmer l'offre"):
             st.success("✅ Offre confirmée!")
+            st.balloons()
+            st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
 
 # الوكيل الذكي
 elif page == t["agent"]:
@@ -122,7 +128,7 @@ elif page == t["agent"]:
     if mode == t["voice"]:
         st.info("🎙 " + ("Smart agent is listening..." if lang=="en" else "الوكيل الذكي يستمع إليك..." if lang=="ar" else "L'agent intelligent écoute..."))
     elif mode == t["gesture"]:
-        st.info("🖐️ " + ("Gesture interaction enabled." if lang=="en" else "تم تفعيل التفاعل بالإيماءات." if lang=="ar" else "Interaction gestuelle activée."))
+        st.info("🖐️ " + ("Gesture Mode: 👍 Approval, 👋 Greeting, ✊🤚 Deal Confirmation" if lang=="en" else "وضع الإيماءات: 👍 موافقة، 👋 تحية، ✊🤚 إبرام الصفقة" if lang=="ar" else "Mode geste: 👍 Accord, 👋 Salutation, ✊🤚 Confirmation de l'offre"))
     else:
         user_input = st.text_input("✍️ " + ("Write here to interact" if lang=="en" else "اكتب هنا للتفاعل" if lang=="ar" else "Écrivez ici pour interagir"))
         if user_input:
@@ -148,12 +154,4 @@ elif page == t["help"]:
 elif page == t["rate"]:
     st.header(t["rate"])
     rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
-    stars = "⭐" * rating + "☆" * (7 - rating)  # نجوم مضاءة ومطفأة
-    st.markdown(f"<h2 style='color:red;'>{stars}</h2>", unsafe_allow_html=True)
-
-    if lang == "en":
-        st.write(f"You rated the product {rating} stars.")
-    elif lang == "ar":
-        st.write(f"لقد قيّمت المنتج {rating} نجوم.")
-    else:
-        st.write(f"Vous avez évalué le produit {rating} étoiles.")
+    stars = "⭐" * rating + "☆" *
