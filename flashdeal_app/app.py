@@ -1,38 +1,40 @@
 import streamlit as st
-from streamlit_extras.switch_page_button import switch_page
 import time
 
 # الترجمات
 translations = {
     "en": {
-        "title": "FlashDeal Star",
+        "title": "⚡⭐ FlashDeal Star",
         "welcome": "Welcome to FlashDeal Star",
-        "tagline": "Simplicity, security, and flexibility in every deal",
+        "tagline": "Discover amazing deals on your favorite products!",
         "get_started": "Get Started",
-        "security": "Security Center",
-        "log": "Transaction Log",
+        "security": "Comprehensive Security Center",
+        "log": "Transparency Log",
+        "deal": "Deal Execution",
         "agent": "Smart Agent",
         "help": "Help Center",
         "rate": "Rate Product"
     },
     "ar": {
-        "title": "فلاش ديل ستار",
+        "title": "⚡⭐ فلاش ديل ستار",
         "welcome": "مرحبًا بك في فلاش ديل ستار",
-        "tagline": "سهولة، أمان، ومرونة في كل صفقة",
+        "tagline": "اكتشف أفضل العروض على منتجاتك المفضلة!",
         "get_started": "ابدأ الآن",
-        "security": "مركز الأمان",
-        "log": "سجل الصفقات",
+        "security": "مركز الأمان الشامل",
+        "log": "سجل الشفافية",
+        "deal": "إبرام الصفقة",
         "agent": "الوكيل الذكي",
         "help": "مركز المساعدة",
         "rate": "قيّم المنتج"
     },
     "fr": {
-        "title": "FlashDeal Star",
+        "title": "⚡⭐ FlashDeal Star",
         "welcome": "Bienvenue à FlashDeal Star",
-        "tagline": "Simplicité, sécurité et flexibilité dans chaque transaction",
+        "tagline": "Découvrez des offres incroyables sur vos produits préférés!",
         "get_started": "Commencer",
-        "security": "Centre de sécurité",
-        "log": "Journal des transactions",
+        "security": "Centre de sécurité complet",
+        "log": "Journal de transparence",
+        "deal": "Exécution de l'offre",
         "agent": "Agent intelligent",
         "help": "Centre d'aide",
         "rate": "Évaluer le produit"
@@ -44,25 +46,48 @@ lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", 
 t = translations[lang]
 
 # شريط تنقل بين الصفحات
-page = st.sidebar.radio("📑 Pages", [t["welcome"], t["security"], t["log"], t["agent"], t["help"], t["rate"]])
+page = st.sidebar.radio("📑 Pages", [t["welcome"], t["security"], t["log"], t["deal"], t["agent"], t["help"], t["rate"]])
 
 # الصفحة الرئيسية
 if page == t["welcome"]:
-    st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']} ⚡⭐</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']}</h1>", unsafe_allow_html=True)
     st.subheader(t["welcome"])
     st.write(t["tagline"])
     if st.button(t["get_started"]):
         st.success("🚀 " + t["welcome"])
+    # تأثير النجمة والبرق
+    placeholder = st.empty()
+    for i in range(6):
+        placeholder.markdown(
+            f"<h3 style='text-align:center; color:{'#FFD700' if i%2==0 else '#007AFF'};'>⭐ ⚡ FlashDeal Star is shining...</h3>",
+            unsafe_allow_html=True
+        )
+        time.sleep(0.4)
 
 # صفحة الأمان
 elif page == t["security"]:
     st.header(t["security"])
-    st.write("✅ Face ID & Biometric enabled\n✅ Mutual Token System active")
+    st.write("🔒 بصمة الوجه والبيومتري")
+    st.write("🔑 نظام التوكن المتبادل")
+    st.write("🚗 مفتاح السيارة الذكي")
 
-# سجل الصفقات
+# سجل الشفافية
 elif page == t["log"]:
     st.header(t["log"])
-    st.write("📊 Recent transactions will appear here...")
+    st.table({
+        "Date": ["2026-03-04"],
+        "Product": ["Wireless Headphones"],
+        "Price": ["$99.99"],
+        "Status": ["✅ Completed"]
+    })
+
+# إبرام الصفقة
+elif page == t["deal"]:
+    st.header(t["deal"])
+    st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
+    st.write("💲 أفضل سعر متاح: $99.99 (بدلاً من $199.99)")
+    if st.button("Confirm Deal / إتمام الصفقة فوراً"):
+        st.success("✅ Deal Confirmed!")
 
 # الوكيل الذكي
 elif page == t["agent"]:
@@ -80,7 +105,9 @@ elif page == t["agent"]:
 # مركز المساعدة
 elif page == t["help"]:
     st.header(t["help"])
-    st.write("❓ هنا تجد إجابات على الأسئلة الشائعة ودعم مباشر.")
+    st.write("❓ كيف يمكننا مساعدتك اليوم في بيئة FlashDeals؟")
+    st.write("📌 كيفية استخدام الأمر الصوتي؟")
+    st.write("📌 كيفية تأكيد الصفقة؟")
 
 # تقييم المنتج
 elif page == t["rate"]:
