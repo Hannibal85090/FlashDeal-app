@@ -154,4 +154,4 @@ elif page == t["help"]:
 elif page == t["rate"]:
     st.header(t["rate"])
     rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
-    stars = "⭐" * rating + "☆" *
+    stars = "⭐" * rating + "☆" * (7 - rating)
