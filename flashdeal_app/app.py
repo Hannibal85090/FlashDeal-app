@@ -100,7 +100,7 @@ elif page == t["log"]:
 # إبرام الصفقة
 elif page == t["deal"]:
     st.header(t["deal"])
-    st.image("product.png", caption="Wireless Headphones", use_column_width=True)
+    st.image("headphones.png", caption="Wireless Headphones", use_column_width=True)
     if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
         st.success("✅ الصفقة تمت بنجاح!!")
         st.balloons()
