@@ -16,8 +16,7 @@ translations = {
         "voice": "🎤 Voice",
         "gesture": "🖐️ Gesture",
         "writing": "✍️ Writing",
-        "rating_label": "⭐ Choose your rating",
-        "price": "Price"
+        "rating_label": "⭐ Choose your rating"
     },
     "ar": {
         "title": "⚡⭐ فلاش ديل ستار",
@@ -33,8 +32,7 @@ translations = {
         "voice": "🎤 صوت",
         "gesture": "🖐️ إيماء",
         "writing": "✍️ كتابة",
-        "rating_label": "⭐ اختر تقييمك",
-        "price": "السعر"
+        "rating_label": "⭐ اختر تقييمك"
     },
     "fr": {
         "title": "⚡⭐ FlashDeal Star",
@@ -50,8 +48,7 @@ translations = {
         "voice": "🎤 Voix",
         "gesture": "🖐️ Geste",
         "writing": "✍️ Écriture",
-        "rating_label": "⭐ Choisissez votre évaluation",
-        "price": "Prix"
+        "rating_label": "⭐ Choisissez votre évaluation"
     }
 }
 
@@ -71,12 +68,43 @@ if page == t["welcome"]:
         st.success("🚀 " + t["welcome"])
     st.markdown("<h3 style='text-align:center; color:#FFD700;'>⭐ ⚡ FlashDeal Star is shining...</h3>", unsafe_allow_html=True)
 
-# صفحة الصفقة
+# صفحة الأمان
+elif page == t["security"]:
+    st.header(t["security"])
+    if lang == "en":
+        st.write("🔒 Facial & Biometric Authentication")
+        st.write("🔑 Mutual Token System")
+        st.write("🚗 FlashDeal Star Key")
+        st.success("✅ Security system connected to encrypted token database.")
+    elif lang == "ar":
+        st.write("🔒 بصمة الوجه والبيومتري")
+        st.write("🔑 نظام التوكن المتبادل")
+        st.write("🚗 مفتاح فلاش ديل ستار")
+        st.success("✅ نظام الأمان متصل بقاعدة بيانات التوكنات المشفرة.")
+    else:
+        st.write("🔒 Authentification faciale et biométrique")
+        st.write("🔑 Système de jeton mutuel")
+        st.write("🚗 Clé FlashDeal Star")
+        st.success("✅ Système de sécurité connecté à la base de données des jetons chiffrés.")
+
+# سجل الشفافية
+elif page == t["log"]:
+    st.header(t["log"])
+    if lang == "en":
+        st.table({"Date": ["2026-03-04"], "Product": ["Wireless Headphones"], "Price": ["$99.99"], "Status": ["✅ Completed"]})
+    elif lang == "ar":
+        st.table({"التاريخ": ["2026-03-04"], "المنتج": ["سماعات لاسلكية"], "السعر": ["$99.99"], "الحالة": ["✅ مكتمل"]})
+    else:
+        st.table({"Date": ["2026-03-04"], "Produit": ["Casque sans fil"], "Prix": ["$99.99"], "Statut": ["✅ Terminé"]})
+
+# إبرام الصفقة
 elif page == t["deal"]:
     st.header(t["deal"])
-    
-    # صورة المنتج
-    st.image("product.png", caption="Wireless Headphones", use_column_width=True)
+    st.image("headphones.png", caption="Wireless Headphones", use_column_width=True)
+    if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
+        st.success("✅ الصفقة تمت بنجاح!!")
+        st.balloons()
+        st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
     
     # السعر مترجم
     if lang == "en":
@@ -91,3 +119,47 @@ elif page == t["deal"]:
         st.success("✅ الصفقة تمت بنجاح!!")
         st.balloons()
         st.markdown("<h2 style='text-align:center; color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
+
+# الوكيل الذكي
+elif page == t["agent"]:
+    st.header(t["agent"])
+    mode = st.radio("🎛 " + ( "Choose interaction mode" if lang=="en" else "اختر نمط التفاعل" if lang=="ar" else "Choisissez le mode d'interaction"),
+                    [t["voice"], t["gesture"], t["writing"]])
+    if mode == t["voice"]:
+        st.info("🎙 " + ("Smart agent is listening..." if lang=="en" else "الوكيل الذكي يستمع إليك..." if lang=="ar" else "L'agent intelligent écoute..."))
+    elif mode == t["gesture"]:
+        st.info("🖐️ " + ("Gesture Mode: 👍 Approval, 👋 Greeting, ✊🤚 Deal Confirmation" if lang=="en" else "وضع الإيماءات: 👍 موافقة، 👋 تحية، ✊🤚 إبرام الصفقة" if lang=="ar" else "Mode geste: 👍 Accord, 👋 Salutation, ✊🤚 Confirmation de l'offre"))
+    else:
+        user_input = st.text_input("✍️ " + ("Write here to interact" if lang=="en" else "اكتب هنا للتفاعل" if lang=="ar" else "Écrivez ici pour interagir"))
+        if user_input:
+            st.success("🤖 " + ("Smart Agent: Received your message - " + user_input if lang=="en" else "الوكيل الذكي: استلم رسالتك - " + user_input if lang=="ar" else "Agent intelligent: Message reçu - " + user_input))
+
+# مركز المساعدة
+elif page == t["help"]:
+    st.header(t["help"])
+    if lang == "en":
+        st.write("❓ How can we help you today in FlashDeals?")
+        st.write("📌 How to use voice commands?")
+        st.write("📌 How to confirm a deal?")
+    elif lang == "ar":
+        st.write("❓ كيف يمكننا مساعدتك اليوم في بيئة فلاش ديلز؟")
+        st.write("📌 كيفية استخدام الأوامر الصوتية؟")
+        st.write("📌 كيفية تأكيد الصفقة؟")
+    else:
+        st.write("❓ Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?")
+        st.write("📌 Comment utiliser les commandes vocales?")
+        st.write("📌 Comment confirmer une offre?")
+
+# تقييم المنتج
+elif page == t["rate"]:
+    st.header(t["rate"])
+    rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
+    stars = "⭐" * rating + "☆" * (7 - rating)
+    st.markdown(f"<h2 style='color:red;'>{stars}</h2>", unsafe_allow_html=True)
+
+    if lang == "en":
+        st.write(f"You rated the product {rating} stars.")
+    elif lang == "ar":
+        st.write(f"لقد قيّمت المنتج {rating} نجوم.")
+    else:
+        st.write(f"Vous avez évalué le produit {rating} étoiles.")
