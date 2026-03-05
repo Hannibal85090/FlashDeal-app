@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_extras.switch_page_button import switch_page
 import time
 
 # الترجمات
@@ -10,7 +11,9 @@ translations = {
         "get_started": "Get Started",
         "security": "Security Center",
         "log": "Transaction Log",
-        "agent": "Smart Agent"
+        "agent": "Smart Agent",
+        "help": "Help Center",
+        "rate": "Rate Product"
     },
     "ar": {
         "title": "فلاش ديل ستار",
@@ -19,7 +22,9 @@ translations = {
         "get_started": "ابدأ الآن",
         "security": "مركز الأمان",
         "log": "سجل الصفقات",
-        "agent": "الوكيل الذكي"
+        "agent": "الوكيل الذكي",
+        "help": "مركز المساعدة",
+        "rate": "قيّم المنتج"
     },
     "fr": {
         "title": "FlashDeal Star",
@@ -28,7 +33,9 @@ translations = {
         "get_started": "Commencer",
         "security": "Centre de sécurité",
         "log": "Journal des transactions",
-        "agent": "Agent intelligent"
+        "agent": "Agent intelligent",
+        "help": "Centre d'aide",
+        "rate": "Évaluer le produit"
     }
 }
 
@@ -36,31 +43,47 @@ translations = {
 lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", "fr"])
 t = translations[lang]
 
-# واجهة رئيسية
-st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']} ⚡⭐</h1>", unsafe_allow_html=True)
-st.subheader(t["welcome"])
-st.write(t["tagline"])
+# شريط تنقل بين الصفحات
+page = st.sidebar.radio("📑 Pages", [t["welcome"], t["security"], t["log"], t["agent"], t["help"], t["rate"]])
 
-# زر البداية
-if st.button(t["get_started"]):
-    st.success("🚀 " + t["welcome"])
+# الصفحة الرئيسية
+if page == t["welcome"]:
+    st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']} ⚡⭐</h1>", unsafe_allow_html=True)
+    st.subheader(t["welcome"])
+    st.write(t["tagline"])
+    if st.button(t["get_started"]):
+        st.success("🚀 " + t["welcome"])
 
-# أقسام إضافية
-st.markdown("---")
-st.header(t["security"])
-st.write("✅ Face ID & Biometric enabled\n✅ Mutual Token System active")
+# صفحة الأمان
+elif page == t["security"]:
+    st.header(t["security"])
+    st.write("✅ Face ID & Biometric enabled\n✅ Mutual Token System active")
 
-st.header(t["log"])
-st.write("📊 Recent transactions will appear here...")
+# سجل الصفقات
+elif page == t["log"]:
+    st.header(t["log"])
+    st.write("📊 Recent transactions will appear here...")
 
-st.header(t["agent"])
-st.write("🤖 Your smart assistant is ready to help!")
+# الوكيل الذكي
+elif page == t["agent"]:
+    st.header(t["agent"])
+    mode = st.radio("🎛 اختر نمط التفاعل", ["🎤 صوت", "🖐️ إيماء", "✍️ كتابة"])
+    if mode == "🎤 صوت":
+        st.info("🎙 الوكيل الذكي يستمع إليك الآن...")
+    elif mode == "🖐️ إيماء":
+        st.info("🖐️ تفاعل بالإيماءات مفعّل.")
+    else:
+        user_input = st.text_input("✍️ اكتب هنا للتفاعل مع الوكيل الذكي")
+        if user_input:
+            st.success(f"🤖 الوكيل الذكي: استلمت رسالتك - '{user_input}'")
 
-# ✨ تأثير النجمة والبرق (محاكاة وميض متحرك)
-placeholder = st.empty()
-for i in range(5):
-    placeholder.markdown(
-        f"<h2 style='text-align:center; color:{'#FFD700' if i%2==0 else '#007AFF'};'>⭐ ⚡ FlashDeal Star is shining...</h2>",
-        unsafe_allow_html=True
-    )
-    time.sleep(0.5)
+# مركز المساعدة
+elif page == t["help"]:
+    st.header(t["help"])
+    st.write("❓ هنا تجد إجابات على الأسئلة الشائعة ودعم مباشر.")
+
+# تقييم المنتج
+elif page == t["rate"]:
+    st.header(t["rate"])
+    rating = st.slider("⭐ اختر تقييمك", 1, 5, 3)
+    st.write(f"لقد قيّمت المنتج بـ {rating} نجوم.")
