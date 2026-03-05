@@ -80,3 +80,14 @@ elif page == t["deal"]:
     
     # السعر مترجم
     if lang == "en":
+        st.subheader("💲 Price: $99.99")
+    elif lang == "ar":
+        st.subheader("💲 السعر: 99.99 دولار")
+    else:
+        st.subheader("💲 Prix: 99.99 $")
+    
+    # زر تأكيد الصفقة
+    if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
+        st.success("✅ الصفقة تمت بنجاح!!")
+        st.balloons()
+        st.markdown("<h2 style='text-align:center; color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
