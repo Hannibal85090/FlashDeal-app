@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_swipe import swipe
 
 # الترجمات
 translations = {
@@ -56,11 +57,12 @@ translations = {
 lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", "fr"])
 t = translations[lang]
 
-# شريط تنقل بين الصفحات
-page = st.sidebar.radio("📑 Pages", [t["welcome"], t["security"], t["log"], t["deal"], t["agent"], t["help"], t["rate"]])
+# الصفحات كشرائح Swipe
+pages = [t["welcome"], t["security"], t["log"], t["deal"], t["agent"], t["help"], t["rate"]]
+selected_page = swipe(pages, key="page_swipe")
 
 # الصفحة الرئيسية
-if page == t["welcome"]:
+if selected_page == t["welcome"]:
     st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']}</h1>", unsafe_allow_html=True)
     st.subheader(t["welcome"])
     st.write(t["tagline"])
@@ -69,7 +71,7 @@ if page == t["welcome"]:
     st.markdown("<h3 style='text-align:center; color:#FFD700;'>⭐ ⚡ FlashDeal Star is shining...</h3>", unsafe_allow_html=True)
 
 # صفحة الأمان
-elif page == t["security"]:
+elif selected_page == t["security"]:
     st.header(t["security"])
     if lang == "en":
         st.write("🔒 Facial & Biometric Authentication")
@@ -88,7 +90,7 @@ elif page == t["security"]:
         st.success("✅ Système de sécurité connecté à la base de données des jetons chiffrés.")
 
 # سجل الشفافية
-elif page == t["log"]:
+elif selected_page == t["log"]:
     st.header(t["log"])
     if lang == "en":
         st.table({"Date": ["2026-03-04"], "Product": ["Wireless Headphones"], "Price": ["$99.99"], "Status": ["✅ Completed"]})
@@ -98,30 +100,16 @@ elif page == t["log"]:
         st.table({"Date": ["2026-03-04"], "Produit": ["Casque sans fil"], "Prix": ["$99.99"], "Statut": ["✅ Terminé"]})
 
 # إبرام الصفقة
-elif page == t["deal"]:
+elif selected_page == t["deal"]:
     st.header(t["deal"])
     st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
-    if lang == "en":
-        st.write("💲 Special Price: $99.99 (instead of $199.99)")
-        if st.button("Confirm Deal"):
-            st.success("✅ Deal Confirmed!")
-            st.balloons()
-            st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
-    elif lang == "ar":
-        st.write("💲 السعر الخاص: 99.99$ (بدلاً من 199.99$)")
-        if st.button("إتمام الصفقة فوراً"):
-            st.success("✅ الصفقة تمت بنجاح!")
-            st.balloons()
-            st.markdown("<h2 style='color:red;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
-    else:
-        st.write("💲 Prix spécial: 99.99$ (au lieu de 199.99$)")
-        if st.button("Confirmer l'offre"):
-            st.success("✅ Offre confirmée!")
-            st.balloons()
-            st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
+    if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
+        st.success("✅ الصفقة تمت بنجاح!")
+        st.balloons()
+        st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
 
 # الوكيل الذكي
-elif page == t["agent"]:
+elif selected_page == t["agent"]:
     st.header(t["agent"])
     mode = st.radio("🎛 " + ( "Choose interaction mode" if lang=="en" else "اختر نمط التفاعل" if lang=="ar" else "Choisissez le mode d'interaction"),
                     [t["voice"], t["gesture"], t["writing"]])
@@ -135,7 +123,7 @@ elif page == t["agent"]:
             st.success("🤖 " + ("Smart Agent: Received your message - " + user_input if lang=="en" else "الوكيل الذكي: استلم رسالتك - " + user_input if lang=="ar" else "Agent intelligent: Message reçu - " + user_input))
 
 # مركز المساعدة
-elif page == t["help"]:
+elif selected_page == t["help"]:
     st.header(t["help"])
     if lang == "en":
         st.write("❓ How can we help you today in FlashDeals?")
@@ -149,3 +137,17 @@ elif page == t["help"]:
         st.write("❓ Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?")
         st.write("📌 Comment utiliser les commandes vocales?")
         st.write("📌 Comment confirmer une offre?")
+
+# تقييم المنتج
+elif selected_page == t["rate"]:
+    st.header(t["rate"])
+    rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
+    stars = "⭐" * rating + "☆" * (7 - rating)
+    st.markdown(f"<h2 style='color:red;'>{stars}</h2>", unsafe_allow_html=True)
+
+    if lang == "en":
+        st.write(f"You rated the product {rating} stars.")
+    elif lang == "ar":
+        st.write(f"لقد قيّمت المنتج {rating} نجوم.")
+    else:
+        st.write(f"Vous avez évalué le produit {rating} étoiles.")
