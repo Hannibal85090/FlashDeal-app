@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 # الترجمات
 translations = {
@@ -55,21 +54,14 @@ if page == t["welcome"]:
     st.write(t["tagline"])
     if st.button(t["get_started"]):
         st.success("🚀 " + t["welcome"])
-    # تأثير النجمة والبرق
-    placeholder = st.empty()
-    for i in range(6):
-        placeholder.markdown(
-            f"<h3 style='text-align:center; color:{'#FFD700' if i%2==0 else '#007AFF'};'>⭐ ⚡ FlashDeal Star is shining...</h3>",
-            unsafe_allow_html=True
-        )
-        time.sleep(0.4)
+    st.markdown("<h3 style='text-align:center; color:#FFD700;'>⭐ ⚡ FlashDeal Star is shining...</h3>", unsafe_allow_html=True)
 
 # صفحة الأمان
 elif page == t["security"]:
     st.header(t["security"])
-    st.write("🔒 بصمة الوجه والبيومتري")
-    st.write("🔑 نظام التوكن المتبادل")
-    st.write("🚗 مفتاح السيارة الذكي")
+    st.write("🔒 Facial & Biometric Authentication")
+    st.write("🔑 Mutual Token System")
+    st.write("🚗 FlashDeal Star Key")
 
 # سجل الشفافية
 elif page == t["log"]:
@@ -85,32 +77,11 @@ elif page == t["log"]:
 elif page == t["deal"]:
     st.header(t["deal"])
     st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
-    st.write("💲 أفضل سعر متاح: $99.99 (بدلاً من $199.99)")
+    st.write("💲 Special Price: $99.99 (instead of $199.99)")
     if st.button("Confirm Deal / إتمام الصفقة فوراً"):
         st.success("✅ Deal Confirmed!")
 
 # الوكيل الذكي
 elif page == t["agent"]:
     st.header(t["agent"])
-    mode = st.radio("🎛 اختر نمط التفاعل", ["🎤 صوت", "🖐️ إيماء", "✍️ كتابة"])
-    if mode == "🎤 صوت":
-        st.info("🎙 الوكيل الذكي يستمع إليك الآن...")
-    elif mode == "🖐️ إيماء":
-        st.info("🖐️ تفاعل بالإيماءات مفعّل.")
-    else:
-        user_input = st.text_input("✍️ اكتب هنا للتفاعل مع الوكيل الذكي")
-        if user_input:
-            st.success(f"🤖 الوكيل الذكي: استلمت رسالتك - '{user_input}'")
-
-# مركز المساعدة
-elif page == t["help"]:
-    st.header(t["help"])
-    st.write("❓ كيف يمكننا مساعدتك اليوم في بيئة FlashDeals؟")
-    st.write("📌 كيفية استخدام الأمر الصوتي؟")
-    st.write("📌 كيفية تأكيد الصفقة؟")
-
-# تقييم المنتج
-elif page == t["rate"]:
-    st.header(t["rate"])
-    rating = st.slider("⭐ اختر تقييمك", 1, 5, 3)
-    st.write(f"لقد قيّمت المنتج بـ {rating} نجوم.")
+    mode = st.radio("🎛 اختر نمط التفاعل", ["🎤 Voice", "🖐️ Gesture", "✍️ Writing"])—
