@@ -1,41 +1,36 @@
-// screens/OnboardingScreen.js
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import i18n from '../i18n'; // ملفات ترجمة منفصلة ar.json, fr.json, en.json
+import streamlit as st
 
-export default function OnboardingScreen({ navigation }) {
-  return (
-    <View style={styles.container} accessible={true}>
-      <Image 
-        source={require('../assets/logo.png')} 
-        style={styles.logo} 
-        accessibilityLabel={i18n.t('app_logo')}
-      />
-      <Text style={styles.title}>{i18n.t('welcome')}</Text>
-      <Text style={styles.subtitle}>{i18n.t('tagline')}</Text>
-
-      <TouchableOpacity 
-        style={styles.button} 
-        onPress={() => navigation.navigate('Home')}
-        accessibilityLabel={i18n.t('get_started')}
-      >
-        <Text style={styles.buttonText}>{i18n.t('get_started')}</Text>
-      </TouchableOpacity>
-    </View>
-  );
+# إعداد الترجمات
+translations = {
+    "en": {
+        "title": "FlashDeal Star",
+        "welcome": "Welcome to FlashDeal Star",
+        "tagline": "Simplicity, security, and flexibility in every deal",
+        "get_started": "Get Started"
+    },
+    "ar": {
+        "title": "فلاش ديل ستار",
+        "welcome": "مرحبًا بك في فلاش ديل ستار",
+        "tagline": "سهولة، أمان، ومرونة في كل صفقة",
+        "get_started": "ابدأ الآن"
+    },
+    "fr": {
+        "title": "FlashDeal Star",
+        "welcome": "Bienvenue à FlashDeal Star",
+        "tagline": "Simplicité, sécurité et flexibilité dans chaque transaction",
+        "get_started": "Commencer"
+    }
 }
 
-const styles = StyleSheet.create({
-  container: { 
-    flex:1, 
-    justifyContent:'center', 
-    alignItems:'center', 
-    backgroundColor:'#f9f9f9',
-    padding:20 
-  },
-  logo: { width:120, height:120, marginBottom:20 },
-  title: { fontSize:24, fontWeight:'bold', color:'#222', marginBottom:10 },
-  subtitle: { fontSize:16, color:'#555', marginBottom:30, textAlign:'center', paddingHorizontal:20 },
-  button: { backgroundColor:'#007AFF', paddingVertical:14, paddingHorizontal:40, borderRadius:10 },
-  buttonText: { color:'#fff', fontSize:16, fontWeight:'600' }
-});
+# اختيار اللغة
+lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", "fr"])
+t = translations[lang]
+
+# واجهة التطبيق
+st.title(t["title"])
+st.subheader(t["welcome"])
+st.write(t["tagline"])
+
+# زر البداية
+if st.button(t["get_started"]):
+    st.success("🚀 " + t["welcome"])
