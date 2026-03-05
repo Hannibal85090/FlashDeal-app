@@ -5,9 +5,9 @@ translations = {
     "en": {
         "title": "⚡⭐ FlashDeal Star",
         "welcome": "Welcome to FlashDeal Star",
-        "tagline": "Discover amazing deals on your favorite products!",
+        "tagline": "Talk. Pay. Done.",
         "get_started": "Get Started",
-        "security": "Comprehensive Security Center",
+        "security": "Security Center",
         "log": "Transparency Log",
         "deal": "Deal Execution",
         "agent": "Smart Agent",
@@ -17,9 +17,9 @@ translations = {
     "ar": {
         "title": "⚡⭐ فلاش ديل ستار",
         "welcome": "مرحبًا بك في فلاش ديل ستار",
-        "tagline": "اكتشف أفضل العروض على منتجاتك المفضلة!",
+        "tagline": "تحدث. ادفع. تم.",
         "get_started": "ابدأ الآن",
-        "security": "مركز الأمان الشامل",
+        "security": "مركز الأمان",
         "log": "سجل الشفافية",
         "deal": "إبرام الصفقة",
         "agent": "الوكيل الذكي",
@@ -29,9 +29,9 @@ translations = {
     "fr": {
         "title": "⚡⭐ FlashDeal Star",
         "welcome": "Bienvenue à FlashDeal Star",
-        "tagline": "Découvrez des offres incroyables sur vos produits préférés!",
+        "tagline": "Parlez. Payez. Terminé.",
         "get_started": "Commencer",
-        "security": "Centre de sécurité complet",
+        "security": "Centre de sécurité",
         "log": "Journal de transparence",
         "deal": "Exécution de l'offre",
         "agent": "Agent intelligent",
@@ -62,6 +62,7 @@ elif page == t["security"]:
     st.write("🔒 Facial & Biometric Authentication")
     st.write("🔑 Mutual Token System")
     st.write("🚗 FlashDeal Star Key")
+    st.success("✅ Security system connected to encrypted token database.")
 
 # سجل الشفافية
 elif page == t["log"]:
@@ -84,4 +85,25 @@ elif page == t["deal"]:
 # الوكيل الذكي
 elif page == t["agent"]:
     st.header(t["agent"])
-    mode = st.radio("🎛 اختر نمط التفاعل", ["🎤 Voice", "🖐️ Gesture", "✍️ Writing"])—
+    mode = st.radio("🎛 اختر نمط التفاعل", ["🎤 Voice", "🖐️ Gesture", "✍️ Writing"])
+    if mode == "🎤 Voice":
+        st.info("🎙 The smart agent is listening...")
+    elif mode == "🖐️ Gesture":
+        st.info("🖐️ Gesture interaction enabled.")
+    else:
+        user_input = st.text_input("✍️ Write here to interact with the smart agent")
+        if user_input:
+            st.success(f"🤖 Smart Agent: Received your message - '{user_input}'")
+
+# مركز المساعدة
+elif page == t["help"]:
+    st.header(t["help"])
+    st.write("❓ How can we help you today in FlashDeals?")
+    st.write("📌 How to use voice commands?")
+    st.write("📌 How to confirm a deal?")
+
+# تقييم المنتج
+elif page == t["rate"]:
+    st.header(t["rate"])
+    rating = st.slider("⭐ Choose your rating", 1, 5, 3)
+    st.write(f"You rated the product {rating} stars.")
