@@ -148,4 +148,4 @@ elif page == t["help"]:
     else:
         st.write("❓ Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?")
         st.write("📌 Comment utiliser les commandes vocales?")
-        st.write("📌 Comment confirmer une offre?
+        st.write("📌 Comment confirmer une offre?")
