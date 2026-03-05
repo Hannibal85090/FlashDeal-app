@@ -101,19 +101,20 @@ elif page == t["log"]:
 elif page == t["deal"]:
     st.header(t["deal"])
     
-    # صورة المنتج
-    st.image("product.png", caption="Wireless Headphones", use_column_width=True)
-    
-    # السعر مترجم
-    if lang == "en":
-        st.subheader("💲 Price: $99.99")
-    elif lang == "ar":
-        st.subheader("💲 السعر: 99.99 دولار")
-    else:
-        st.subheader("💲 Prix: 99.99 $")
+    # عرض الصورة والسعر في أعمدة
+    col1, col2 = st.columns([2,1])
+    with col1:
+        st.image("product.png", caption="Wireless Headphones", use_column_width=True)
+    with col2:
+        if lang == "en":
+            st.subheader("💲 Price: $99.99")
+        elif lang == "ar":
+            st.subheader("💲 السعر: 99.99 دولار")
+        else:
+            st.subheader("💲 Prix: 99.99 $")
     
     # زر الصفقة مع مفتاح فريد
-    if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre", key="deal_button"):
+    if st.button("🛒 Confirm Deal / إتمام الصفقة / Confirmer l'offre", key="deal_button"):
         st.success("✅ الصفقة تمت بنجاح!!")
         st.balloons()
         st.markdown("<h2 style='text-align:center; color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
