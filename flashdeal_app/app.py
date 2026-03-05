@@ -100,7 +100,7 @@ elif page == t["log"]:
 # إبرام الصفقة
 elif page == t["deal"]:
     st.header(t["deal"])
-    
+
     # عرض الصورة والسعر في أعمدة
     col1, col2 = st.columns([2,1])
     with col1:
@@ -112,7 +112,7 @@ elif page == t["deal"]:
             st.subheader("💲 السعر: 99.99 دولار")
         else:
             st.subheader("💲 Prix: 99.99 $")
-    
+
     # زر الصفقة مع مفتاح فريد
     if st.button("🛒 Confirm Deal / إتمام الصفقة / Confirmer l'offre", key="deal_button"):
         st.success("✅ الصفقة تمت بنجاح!!")
