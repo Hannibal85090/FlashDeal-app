@@ -100,9 +100,9 @@ elif page == t["log"]:
 # إبرام الصفقة
 elif page == t["deal"]:
     st.header(t["deal"])
-    st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
+    st.image("headphones.png", caption="Wireless Headphones", use_column_width=True)
     if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
-        st.success("✅ الصفقة تمت بنجاح!")
+        st.success("✅ الصفقة تمت بنجاح!!")
         st.balloons()
         st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
 
