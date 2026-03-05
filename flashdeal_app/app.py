@@ -71,33 +71,53 @@ if page == t["welcome"]:
 # صفحة الأمان
 elif page == t["security"]:
     st.header(t["security"])
-    st.write("🔒 " + ("Facial & Biometric Authentication" if lang=="en" else "بصمة الوجه والبيومتري" if lang=="ar" else "Authentification faciale et biométrique"))
-    st.write("🔑 " + ("Mutual Token System" if lang=="en" else "نظام التوكن المتبادل" if lang=="ar" else "Système de jeton mutuel"))
-    st.write("🚗 " + ("FlashDeal Star Key" if lang=="en" else "مفتاح فلاش ديل ستار" if lang=="ar" else "Clé FlashDeal Star"))
-    st.success("✅ " + ("Security system connected to encrypted token database." if lang=="en" else "نظام الأمان متصل بقاعدة بيانات التوكنات المشفرة." if lang=="ar" else "Système de sécurité connecté à la base de données des jetons chiffrés."))
+    if lang == "en":
+        st.write("🔒 Facial & Biometric Authentication")
+        st.write("🔑 Mutual Token System")
+        st.write("🚗 FlashDeal Star Key")
+        st.success("✅ Security system connected to encrypted token database.")
+    elif lang == "ar":
+        st.write("🔒 بصمة الوجه والبيومتري")
+        st.write("🔑 نظام التوكن المتبادل")
+        st.write("🚗 مفتاح فلاش ديل ستار")
+        st.success("✅ نظام الأمان متصل بقاعدة بيانات التوكنات المشفرة.")
+    else:
+        st.write("🔒 Authentification faciale et biométrique")
+        st.write("🔑 Système de jeton mutuel")
+        st.write("🚗 Clé FlashDeal Star")
+        st.success("✅ Système de sécurité connecté à la base de données des jetons chiffrés.")
 
 # سجل الشفافية
 elif page == t["log"]:
     st.header(t["log"])
-    st.table({
-        "Date": ["2026-03-04"],
-        "Product": ["Wireless Headphones"],
-        "Price": ["$99.99"],
-        "Status": ["✅ " + ("Completed" if lang=="en" else "مكتمل" if lang=="ar" else "Terminé")]
-    })
+    if lang == "en":
+        st.table({"Date": ["2026-03-04"], "Product": ["Wireless Headphones"], "Price": ["$99.99"], "Status": ["✅ Completed"]})
+    elif lang == "ar":
+        st.table({"التاريخ": ["2026-03-04"], "المنتج": ["سماعات لاسلكية"], "السعر": ["$99.99"], "الحالة": ["✅ مكتمل"]})
+    else:
+        st.table({"Date": ["2026-03-04"], "Produit": ["Casque sans fil"], "Prix": ["$99.99"], "Statut": ["✅ Terminé"]})
 
 # إبرام الصفقة
 elif page == t["deal"]:
     st.header(t["deal"])
     st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
-    st.write("💲 " + ("Special Price: $99.99 (instead of $199.99)" if lang=="en" else "السعر الخاص: 99.99$ (بدلاً من 199.99$)" if lang=="ar" else "Prix spécial: 99.99$ (au lieu de 199.99$)"))
-    if st.button("Confirm Deal / إتمام الصفقة فوراً / Confirmer l'offre"):
-        st.success("✅ " + ("Deal Confirmed!" if lang=="en" else "تم تأكيد الصفقة!" if lang=="ar" else "Offre confirmée!"))
+    if lang == "en":
+        st.write("💲 Special Price: $99.99 (instead of $199.99)")
+        if st.button("Confirm Deal"):
+            st.success("✅ Deal Confirmed!")
+    elif lang == "ar":
+        st.write("💲 السعر الخاص: 99.99$ (بدلاً من 199.99$)")
+        if st.button("إتمام الصفقة فوراً"):
+            st.success("✅ تم تأكيد الصفقة!")
+    else:
+        st.write("💲 Prix spécial: 99.99$ (au lieu de 199.99$)")
+        if st.button("Confirmer l'offre"):
+            st.success("✅ Offre confirmée!")
 
 # الوكيل الذكي
 elif page == t["agent"]:
     st.header(t["agent"])
-    mode = st.radio("🎛 " + ("Choose interaction mode" if lang=="en" else "اختر نمط التفاعل" if lang=="ar" else "Choisissez le mode d'interaction"),
+    mode = st.radio("🎛 " + ( "Choose interaction mode" if lang=="en" else "اختر نمط التفاعل" if lang=="ar" else "Choisissez le mode d'interaction"),
                     [t["voice"], t["gesture"], t["writing"]])
     if mode == t["voice"]:
         st.info("🎙 " + ("Smart agent is listening..." if lang=="en" else "الوكيل الذكي يستمع إليك..." if lang=="ar" else "L'agent intelligent écoute..."))
@@ -111,9 +131,18 @@ elif page == t["agent"]:
 # مركز المساعدة
 elif page == t["help"]:
     st.header(t["help"])
-    st.write("❓ " + ("How can we help you today in FlashDeals?" if lang=="en" else "كيف يمكننا مساعدتك اليوم في بيئة فلاش ديلز؟" if lang=="ar" else "Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?"))
-    st.write("📌 " + ("How to use voice commands?" if lang=="en" else "كيفية استخدام الأوامر الصوتية؟" if lang=="ar" else "Comment utiliser les commandes vocales?"))
-    st.write("📌 " + ("How to confirm a deal?" if lang=="en" else "كيفية تأكيد الصفقة؟" if lang=="ar" else "Comment confirmer une offre?"))
+    if lang == "en":
+        st.write("❓ How can we help you today in FlashDeals?")
+        st.write("📌 How to use voice commands?")
+        st.write("📌 How to confirm a deal?")
+    elif lang == "ar":
+        st.write("❓ كيف يمكننا مساعدتك اليوم في بيئة فلاش ديلز؟")
+        st.write("📌 كيفية استخدام الأوامر الصوتية؟")
+        st.write("📌 كيفية تأكيد الصفقة؟")
+    else:
+        st.write("❓ Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?")
+        st.write("📌 Comment utiliser les commandes vocales?")
+        st.write("📌 Comment confirmer une offre?")
 
 # تقييم المنتج
 elif page == t["rate"]:
@@ -121,5 +150,10 @@ elif page == t["rate"]:
     rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
     stars = "⭐" * rating + "☆" * (7 - rating)  # نجوم مضاءة ومطفأة
     st.markdown(f"<h2 style='color:red;'>{stars}</h2>", unsafe_allow_html=True)
-    st.write(f"{'You rated the product' if lang=='en' else 'لقد قيّمت المنتج' if lang=='ar' else 'Vous avez évalué le produit'} {rating} {'stars' if lang=='en' else 'نجوم' if lang=='ar' else 'étoiles'}.")    rating = st.slider("⭐ Choose your rating", 1, 5, 3)
-    st.write(f"You rated the product {rating} stars.")
+
+    if lang == "en":
+        st.write(f"You rated the product {rating} stars.")
+    elif lang == "ar":
+        st.write(f"لقد قيّمت المنتج {rating} نجوم.")
+    else:
+        st.write(f"Vous avez évalué le produit {rating} étoiles.")
