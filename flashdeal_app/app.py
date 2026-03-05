@@ -148,10 +148,4 @@ elif page == t["help"]:
     else:
         st.write("❓ Comment pouvons-nous vous aider aujourd'hui dans FlashDeals?")
         st.write("📌 Comment utiliser les commandes vocales?")
-        st.write("📌 Comment confirmer une offre?")
-
-# تقييم المنتج
-elif page == t["rate"]:
-    st.header(t["rate"])
-    rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
-    stars = "⭐" * rating + "☆" * (7 - rating)
+        st.write("📌 Comment confirmer une offre?
