@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_swipe import swipe
 
 # الترجمات
 translations = {
@@ -57,12 +56,11 @@ translations = {
 lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", "fr"])
 t = translations[lang]
 
-# الصفحات كشرائح Swipe
-pages = [t["welcome"], t["security"], t["log"], t["deal"], t["agent"], t["help"], t["rate"]]
-selected_page = swipe(pages, key="page_swipe")
+# شريط تنقل بين الصفحات
+page = st.sidebar.radio("📑 Pages", [t["welcome"], t["security"], t["log"], t["deal"], t["agent"], t["help"], t["rate"]])
 
 # الصفحة الرئيسية
-if selected_page == t["welcome"]:
+if page == t["welcome"]:
     st.markdown(f"<h1 style='text-align:center; color:#007AFF;'>{t['title']}</h1>", unsafe_allow_html=True)
     st.subheader(t["welcome"])
     st.write(t["tagline"])
@@ -71,7 +69,7 @@ if selected_page == t["welcome"]:
     st.markdown("<h3 style='text-align:center; color:#FFD700;'>⭐ ⚡ FlashDeal Star is shining...</h3>", unsafe_allow_html=True)
 
 # صفحة الأمان
-elif selected_page == t["security"]:
+elif page == t["security"]:
     st.header(t["security"])
     if lang == "en":
         st.write("🔒 Facial & Biometric Authentication")
@@ -90,7 +88,7 @@ elif selected_page == t["security"]:
         st.success("✅ Système de sécurité connecté à la base de données des jetons chiffrés.")
 
 # سجل الشفافية
-elif selected_page == t["log"]:
+elif page == t["log"]:
     st.header(t["log"])
     if lang == "en":
         st.table({"Date": ["2026-03-04"], "Product": ["Wireless Headphones"], "Price": ["$99.99"], "Status": ["✅ Completed"]})
@@ -100,7 +98,7 @@ elif selected_page == t["log"]:
         st.table({"Date": ["2026-03-04"], "Produit": ["Casque sans fil"], "Prix": ["$99.99"], "Statut": ["✅ Terminé"]})
 
 # إبرام الصفقة
-elif selected_page == t["deal"]:
+elif page == t["deal"]:
     st.header(t["deal"])
     st.image("https://upload.wikimedia.org/wikipedia/commons/2/22/Wireless_headphones.jpg", caption="Wireless Headphones")
     if st.button("Confirm Deal / إتمام الصفقة / Confirmer l'offre"):
@@ -109,7 +107,7 @@ elif selected_page == t["deal"]:
         st.markdown("<h2 style='color:gold;'>⭐⭐⭐⭐⭐</h2>", unsafe_allow_html=True)
 
 # الوكيل الذكي
-elif selected_page == t["agent"]:
+elif page == t["agent"]:
     st.header(t["agent"])
     mode = st.radio("🎛 " + ( "Choose interaction mode" if lang=="en" else "اختر نمط التفاعل" if lang=="ar" else "Choisissez le mode d'interaction"),
                     [t["voice"], t["gesture"], t["writing"]])
@@ -123,7 +121,7 @@ elif selected_page == t["agent"]:
             st.success("🤖 " + ("Smart Agent: Received your message - " + user_input if lang=="en" else "الوكيل الذكي: استلم رسالتك - " + user_input if lang=="ar" else "Agent intelligent: Message reçu - " + user_input))
 
 # مركز المساعدة
-elif selected_page == t["help"]:
+elif page == t["help"]:
     st.header(t["help"])
     if lang == "en":
         st.write("❓ How can we help you today in FlashDeals?")
@@ -139,7 +137,7 @@ elif selected_page == t["help"]:
         st.write("📌 Comment confirmer une offre?")
 
 # تقييم المنتج
-elif selected_page == t["rate"]:
+elif page == t["rate"]:
     st.header(t["rate"])
     rating = st.slider(t["rating_label"], 1, 7, 3)  # من 1 إلى 7 نجوم
     stars = "⭐" * rating + "☆" * (7 - rating)
