@@ -1,125 +1,41 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
+from flashdeal_app.security_engine import FlashDealSecurity
 
-# -------------------------------
-# إعدادات عامة
-# -------------------------------
-st.set_page_config(page_title="My FlashDeal Star", layout="wide")
+st.set_page_config(page_title="FlashDeal Star Portal", page_icon="⭐", layout="wide")
 
-# -------------------------------
-# الترجمات
-# -------------------------------
-translations = {
-    "en": {
-        "title": "🌟 FlashDeal Star",
-        "welcome": "Welcome to FlashDeal Star",
-        "tagline": "Talk. Pay. Done.",
-        "security": "Security Center",
-        "log": "Transparency Log",
-        "deal": "Deal Execution",
-        "agent": "Smart Agent",
-        "help": "Help Center",
-        "rate": "Rate Product",
-        "follow": "Follow-up",
-        "caption": "Wireless Headphones",
-        "price": "Price: $59.99",
-        "voice": "🎤 Voice",
-        "gesture": "✋ Gesture",
-        "writing": "✍️ Writing",
-        "rating_label": "⭐ Choose your rating"
-    },
-    "ar": {
-        "title": "🌟 نجم FlashDeal",
-        "welcome": "مرحبا بك في FlashDeal Star",
-        "tagline": "تحدث. ادفع. تم.",
-        "security": "مركز الحماية",
-        "log": "سجل الشفافية",
-        "deal": "تنفيذ الصفقة",
-        "agent": "الوكيل الذكي",
-        "help": "مركز المساعدة",
-        "rate": "قيم المنتج",
-        "follow": "المتابعة",
-        "caption": "سماعات لاسلكية",
-        "price": "السعر: 59.99 دينار",
-        "voice": "🎤 صوت",
-        "gesture": "✋ إيماءة",
-        "writing": "✍️ كتابة",
-        "rating_label": "⭐ اختر تقييمك"
-    },
-    "fr": {
-        "title": "🌟 FlashDeal Star",
-        "welcome": "Bienvenue à FlashDeal Star",
-        "tagline": "Parlez. Payez. Terminé.",
-        "security": "Centre de sécurité",
-        "log": "Journal de transparence",
-        "deal": "Exécution de l'offre",
-        "agent": "Agent intelligent",
-        "help": "Centre d'aide",
-        "rate": "Évaluer le produit",
-        "follow": "Suivi",
-        "caption": "Casque sans fil",
-        "price": "Prix : 59,99 €",
-        "voice": "🎤 Voix",
-        "gesture": "✋ Geste",
-        "writing": "✍️ Écriture",
-        "rating_label": "⭐ Choisissez votre note"
-    }
-}
+# 1. قائمة جانبية احترافية
+with st.sidebar:
+    selected = option_menu(
+        menu_title="FlashDeal Star", 
+        options=["الرئيسية", "المحرك الأمني", "المشروع الموازي", "سجل الأعتبار"],
+        icons=["house", "shield-lock", "rocket-takeoff", "journal-text"],
+        menu_icon="stars",
+        default_index=0,
+    )
 
-# -------------------------------
-# اختيار اللغة
-# -------------------------------
-lang = st.sidebar.selectbox("🌐 Language / اللغة / Langue", ["en", "ar", "fr"])
-texts = translations[lang]
+security = FlashDealSecurity()
 
-# -------------------------------
-# العنوان والترحيب
-# -------------------------------
-st.title(texts["title"])
-st.write(texts["welcome"])
-st.write(texts["tagline"])
+# 2. محتوى الصفحات
+if selected == "الرئيسية":
+    st.title("⭐ My FlashDeal Star")
+    st.subheader("Talk. Pay. Done.")
+    st.write("مرحباً بك في بوابة التحكم الذكية الخاصة بـ FlashDeal.")
 
-# -------------------------------
-# صورة المنتج مع السعر
-# -------------------------------
-st.image("assets/images/headphones_small.png", caption=texts["caption"], use_column_width=True)
-st.subheader(texts["price"])
+elif selected == "المحرك الأمني":
+    st.header("🛡️ نظام التحقق من التوكن")
+    token = st.text_input("أدخل التوكن النشط", type="password")
+    if st.button("تحقق الآن"):
+        if security.verify_token(token):
+            st.success("✅ تم التوثيق بنجاح.")
+        else:
+            st.error("❌ التوكن غير صحيح.")
 
-# -------------------------------
-# خيارات التفاعل (صوت، إيماءة، كتابة)
-# -------------------------------
-st.markdown("### Interaction Options")
-interaction = st.radio("Choose interaction mode:", [texts["voice"], texts["gesture"], texts["writing"]])
-st.info(f"You selected: {interaction}")
+elif selected == "المشروع الموازي":
+    st.header("🚀 High-Quality Parallel Project")
+    st.info("هذا القسم مخصص للميزات المتقدمة: بصمة الحركة، التعرف على الوجه، وشريحة SIM الخاصة.")
+    st.button("طلب تمويل للمشروع الموازي", disabled=True)
 
-# -------------------------------
-# تقييم المنتج
-# -------------------------------
-st.markdown("### " + texts["rate"])
-rating = st.slider(texts["rating_label"], 1, 5, 3)
-st.success(f"{texts['rate']}: {rating} ⭐")
-
-# -------------------------------
-# الأقسام الرئيسية
-# -------------------------------
-st.header(texts["security"])
-st.write("🔒 " + texts["security"] + " content goes here...")
-
-st.header(texts["log"])
-st.write("📑 " + texts["log"] + " content goes here...")
-
-st.header(texts["deal"])
-st.write("⚡ " + texts["deal"] + " content goes here...")
-
-st.header(texts["agent"])
-st.write("🤖 " + texts["agent"] + " content goes here...")
-
-st.header(texts["help"])
-st.write("❓ " + texts["help"] + " content goes here...")
-
-st.header(texts["follow"])
-st.write("📌 " + texts["follow"] + " content goes here...")
-
-# -------------------------------
-# إشعار نجاح
-# -------------------------------
-st.success("✅ جميع الخصائص مضبوطة: العنوان، الصورة، السعر، الأقسام، اللغات، الترجمة، خيارات التفاعل، التقييم.")
+elif selected == "سجل الأعتبار":
+    st.header("📝 سجل الدروس المستفادة")
+    st.warning("درس تقني: تم حل مشكلة Indentation Error وضبط مسارات GitHub بنجاح.")
