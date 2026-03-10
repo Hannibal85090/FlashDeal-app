@@ -1,38 +1,32 @@
 import streamlit as st
-from star_security_core import FlashDealStarSecurity # هذا السطر يستدعي "المخ" الأمني
 
-# إعدادات واجهة نجمتي فلاش ديل
-st.set_page_config(page_title="My FlashDeal Star", page_icon="🌟", layout="centered")
+# 1. الإعدادات الأساسية
+st.set_page_config(page_title="My FlashDeal Star", page_icon="⭐")
 
-# تشغيل النظام الأمني
-security = FlashDealStarSecurity()
+# 2. تنسيق فخم (تصحيح خطأ markdown السابق)
+st.markdown("""
+    <style>
+    .stApp { background-color: #050505; color: gold; }
+    .stButton>button { background-color: gold; color: black; border-radius: 10px; width: 100%; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# تصميم الواجهة الرئيسية
-st.markdown("<h1 style='text-align: center; color: #FFD700;'>🌟 My FlashDeal Star</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-style: italic;'>Talk. Pay. Done.</p>", unsafe_allow_html=True)
+# 3. واجهة النجمة
+st.title("⭐ My FlashDeal Star")
+st.write("Talk. Pay. Done.")
 
-st.divider()
+# 4. المحرك الأمني
+token = st.text_input("ادخل توكن الأمان المتفق عليه", type="password")
 
-# منطقة فحص الأمان (الدرع الذكي)
-st.subheader("🛡️ درع الأمان الذكي (Security Shield)")
-st.info("قم بلصق أي رسالة مشبوهة أو رابط لفحصه قبل إتمام العملية.")
-
-user_input = st.text_area("رسالة الدفع أو المحتوى:", placeholder="ضع النص هنا...")
-
-if st.button("تفعيل فحص FlashDeal"):
-    if user_input:
-        is_safe, message = security.validate_content(user_input)
-        
-        if is_safe:
-            st.success(f"✅ محتوى آمن: {message}")
-            # توليد التوكن كإجراء أمني إضافي
-            token = security.generate_secure_token(user_input[:5])
-            st.code(f"Generated Security Token: {token}", language="bash")
-        else:
-            st.error(f"⚠️ تحذير أمني: {message}")
-            st.warning("تم حظر العملية تلقائياً لحمايتك.")
+if st.button("تفعيل النجمة"):
+    if token == "FLASH_2026":
+        st.success("تم الاتصال بنجاح.. النظام الموازي نشط الآن")
+        st.balloons()
     else:
-        st.write("الرجاء إدخال بيانات لتحليلها.")
+        st.error("التوكن غير صحيح، راجع سجل الاعتبار")
 
-st.divider()
-st.caption("FlashDeal High-Quality Project | 2026 Security Core")
+# 5. المسار الموازي (الجودة العالية)
+with st.expander("🛠️ مميزات المشروع الموازي"):
+    st.write("- نظام بصمة الحركة (قيد البرمجة)")
+    st.write("- التوكن المتبادل (Mutual Token)")
+    st.info("هذا المسار مخصص للجودة العالية والتمويل المستقبلي.")
