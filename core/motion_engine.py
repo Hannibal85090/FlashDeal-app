@@ -1,12 +1,19 @@
 import cv2
-import mediapipe as mp
-# استدعاء مباشر للمكونات لضمان عدم حدوث AttributeError
-import mediapipe.python.solutions.hands as mp_hands
-import mediapipe.python.solutions.drawing_utils as mp_draw
+import numpy as np
+
+# استيراد مرن للتعامل مع اختلاف نسخ المكتبة في السحابة
+try:
+    import mediapipe as mp
+    from mediapipe.python.solutions import hands as mp_hands
+    from mediapipe.python.solutions import drawing_utils as mp_draw
+except ImportError:
+    import mediapipe as mp
+    mp_hands = mp.solutions.hands
+    mp_draw = mp.solutions.drawing_utils
 
 class FlashDealMotionEngine:
     def __init__(self):
-        # إعداد حلول تتبع اليد
+        """إعداد محرك رصد بصمة الحركة لـ FlashDeal Star"""
         self.mp_hands = mp_hands
         self.mp_draw = mp_draw
         self.hands = self.mp_hands.Hands(
@@ -18,12 +25,12 @@ class FlashDealMotionEngine:
 
     def verify_motion(self, frame):
         """
-        معالجة الصورة لرصد بصمة الحركة (نقاط اليد)
+        معالجة الصورة لرصد نقاط اليد ورسم الهيكل العظمي للبصمة
         """
         if frame is None:
             return False, None
 
-        # تحويل الصورة إلى RGB لأن MediaPipe يتعامل مع هذا النظام
+        # تحويل الصورة إلى نظام RGB المطلوب لمحرك MediaPipe
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.hands.process(rgb_frame)
         
@@ -31,7 +38,7 @@ class FlashDealMotionEngine:
         
         if results.multi_hand_landmarks:
             motion_detected = True
-            # رسم الهيكل العظمي للبصمة الحركية على الصورة
+            # رسم نقاط الاتصال (بصمة الحركة) باللون الأخضر والأحمر
             for hand_landmarks in results.multi_hand_landmarks:
                 self.mp_draw.draw_landmarks(
                     frame, 
