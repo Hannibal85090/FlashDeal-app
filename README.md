@@ -1,35 +1,38 @@
-# 🌟 FlashDeal Star (AI Financial Agent)
+# 🌟 FlashDeal Star (AI-Powered Financial Agent)
 > **Slogan:** Talk. Pay. Done.
 
-**FlashDeal Star** هو نظام مالي ثوري يعتمد على الذكاء الاصطناعي الصوتي لتنفيذ المعاملات المالية بسرعة وأمان فائقين. يهدف المشروع إلى جعل الدفع الرقمي سهلاً ومتاحاً للجميع من خلال الأوامر الصوتية البسيطة والتوثيق البيومتري المتقدم.
+**FlashDeal Star** is a revolutionary financial ecosystem that leverages Voice AI to execute transactions with unprecedented speed and security. Our mission is to make digital payments accessible to everyone through simple voice commands and advanced multimodal biometric authentication.
 
 ---
 
-## 🚀 رابط التطبيق الحي (Live Demo)
-يمكنكم تجربة النسخة التفاعلية من التطبيق التي تم إطلاقها بنجاح عبر الرابط التالي:
-**[اضغط هنا لزيارة تطبيق FlashDeal Star](https://flashdeal-app-njpelxdrxbnynngjvkdkhmq.streamlit.app)**
+## 🚀 Live Demo
+Experience the interactive prototype live on Streamlit:
+👉 **[Launch FlashDeal Star App](https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/)**
 
 ---
 
-## 🛡️ ميزات الأمان المبتكرة
-يتميز نظام **My FlashDeal Star** ببروتوكول أمان متعدد الطبقات لضمان حماية المستخدم:
-* **المصادقة الثلاثية (Triple-Layer Auth):** دمج بصمة الصوت، الوجه، وحركة الجسم لتأكيد الهوية.
-* **نظام التوكن المتبادل (Mutual Token):** تأمين الاتصال بين العميل والنظام لضمان عدم التلاعب بالعمليات.
-* **التوافق مع ERC-8004:** الالتزام بالمعايير العالمية للوكلاء الماليين الأذكياء.
-
-
-
-## 🛠️ الهندسة البرمجية للمشروع
-يتكون المشروع من هيكلية منظمة لضمان الكفاءة:
-1. **Core Engine:** يحتوي على محرك الأمان ومحرك معالجة الصوت.
-2. **Main Orchestrator:** المنسق الذكي الذي يربط الأوامر الصوتية بإجراءات الأمان.
-3. **Interactive Interface:** واجهة مستخدم مبنية باستخدام **Streamlit** لتجربة مستخدم سلسة.
-
-## 🌍 الرؤية المستقبلية
-* تطوير أجهزة مادية (Hardware) خفيفة الوزن تعمل كمفاتيح سيارة ذكية لتشغيل المركبات عن بُعد.
-* إصدار بطاقات SIM خاصة بـ FlashDeal لتعزيز خصوصية الاتصالات المالية.
-* دعم لغة الإشارة والحركات الجسدية ليكون النظام شاملاً لجميع فئات المجتمع.
+## 🛡️ Innovative Security (Triple-Layer Bio-Auth)
+My FlashDeal Star implements a cutting-edge security protocol to protect users:
+* **Voice Print:** Recognition of the user's unique vocal signature.
+* **Face ID:** Instant visual identity verification.
+* **Movement Biometrics:** An innovative layer requiring specific body/hand gestures to confirm human presence and intent.
+* **Mutual Token System:** Secure, encrypted tunneling for transaction execution, aligned with **ERC-8004** standards.
 
 ---
-**تطوير: علي عرفاوي** *مشروع FlashDeal - Talk. Pay. Done.*
-https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/
+
+## 🛠️ Technical Architecture
+The project is built with a modular, scalable structure:
+1.  **Core Engine:** Advanced security and voice processing modules.
+2.  **Main Orchestrator:** The "Brain" that links voice intent with secure execution.
+3.  **Streamlit Interface:** A sleek, user-friendly frontend for real-time interaction.
+
+---
+
+## 🔮 Future Vision & Roadmap
+* **Hardware Integration:** Lightweight "Star" devices (similar to smart car keys) for remote vehicle operation and proximity payments.
+* **Inclusion:** Full integration of **Sign Language Recognition** (OpenCV) to empower the deaf and mute community.
+* **Dedicated Infrastructure:** Issuing specialized FlashDeal SIM cards for enhanced communication privacy.
+
+---
+**Developed by:** Ali Arfaoui  
+*FlashDeal Project - Empowering Future Finance.*
