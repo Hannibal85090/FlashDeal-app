@@ -36,3 +36,4 @@ The project is built with a modular, scalable structure:
 ---
 **Developed by:** Ali Arfaoui  
 *FlashDeal Project - Empowering Future Finance.*
+https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/
