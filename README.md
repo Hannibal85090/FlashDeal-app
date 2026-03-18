@@ -5,11 +5,6 @@
 
 ---
 
-## 🚀 Live Demo
-Experience the interactive prototype live on Streamlit:
-👉 **[Launch FlashDeal Star App](https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/)**
-
----
 
 ## 🛡️ Innovative Security (Triple-Layer Bio-Auth)
 My FlashDeal Star implements a cutting-edge security protocol to protect users:
