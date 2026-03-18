@@ -1,5 +1,35 @@
-​My FlashDeal Star
-​Slogan: Talk. Pay. Done.
-​Security: Multi-layer Biometrics and TEE (Trusted Execution Environment) execution.
-​Compliance: Fully compliant with ERC-8004 standards for Verifiable AI Financial Agents.
-​Core Concept: An autonomous AI financial agent designed for secure, voice-to-transaction operations with integrated on-chain risk management
+# 🌟 FlashDeal Star (AI Financial Agent)
+> **Slogan:** Talk. Pay. Done.
+
+**FlashDeal Star** هو نظام مالي ثوري يعتمد على الذكاء الاصطناعي الصوتي لتنفيذ المعاملات المالية بسرعة وأمان فائقين. يهدف المشروع إلى جعل الدفع الرقمي سهلاً ومتاحاً للجميع من خلال الأوامر الصوتية البسيطة والتوثيق البيومتري المتقدم.
+
+---
+
+## 🚀 رابط التطبيق الحي (Live Demo)
+يمكنكم تجربة النسخة التفاعلية من التطبيق التي تم إطلاقها بنجاح عبر الرابط التالي:
+**[اضغط هنا لزيارة تطبيق FlashDeal Star](https://flashdeal-app-njpelxdrxbnynngjvkdkhmq.streamlit.app)**
+
+---
+
+## 🛡️ ميزات الأمان المبتكرة
+يتميز نظام **My FlashDeal Star** ببروتوكول أمان متعدد الطبقات لضمان حماية المستخدم:
+* **المصادقة الثلاثية (Triple-Layer Auth):** دمج بصمة الصوت، الوجه، وحركة الجسم لتأكيد الهوية.
+* **نظام التوكن المتبادل (Mutual Token):** تأمين الاتصال بين العميل والنظام لضمان عدم التلاعب بالعمليات.
+* **التوافق مع ERC-8004:** الالتزام بالمعايير العالمية للوكلاء الماليين الأذكياء.
+
+
+
+## 🛠️ الهندسة البرمجية للمشروع
+يتكون المشروع من هيكلية منظمة لضمان الكفاءة:
+1. **Core Engine:** يحتوي على محرك الأمان ومحرك معالجة الصوت.
+2. **Main Orchestrator:** المنسق الذكي الذي يربط الأوامر الصوتية بإجراءات الأمان.
+3. **Interactive Interface:** واجهة مستخدم مبنية باستخدام **Streamlit** لتجربة مستخدم سلسة.
+
+## 🌍 الرؤية المستقبلية
+* تطوير أجهزة مادية (Hardware) خفيفة الوزن تعمل كمفاتيح سيارة ذكية لتشغيل المركبات عن بُعد.
+* إصدار بطاقات SIM خاصة بـ FlashDeal لتعزيز خصوصية الاتصالات المالية.
+* دعم لغة الإشارة والحركات الجسدية ليكون النظام شاملاً لجميع فئات المجتمع.
+
+---
+**تطوير: علي عرفاوي** *مشروع FlashDeal - Talk. Pay. Done.*
+https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/
