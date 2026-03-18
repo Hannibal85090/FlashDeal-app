@@ -3,39 +3,56 @@ import secrets
 
 class FlashDealSecurityEngine:
     """
-    FlashDeal Security Engine:
-    Handles multi-layer biometric authentication and mutual token generation.
+    FlashDeal Security Engine (v2.0):
+    المحرك الأمني المتكامل: مصادقة حيوية ثلاثية + نظام استعادة الطوارئ.
     """
     def __init__(self):
-        # Secure storage for hashed biometric templates
-        self.__secure_storage = {} 
+        # مخزن مشفر للبيانات الحيوية والرموز السرية
+        self.__secure_storage = {}
+        # رمز استعادة افتراضي للطوارئ (Simple Option)
+        self.__recovery_code = "FD-1234-SAFE" 
 
     def _generate_secure_hash(self, biometric_input):
-        """Converts biometric input into a non-reversible cryptographic hash"""
+        """تحويل المدخلات إلى بصمة رقمية مشفرة SHA-3"""
         return hashlib.sha3_512(biometric_input.encode()).hexdigest()
 
-    def verify_identity(self, voice_data, facial_data):
-        """
-        Main Authentication Scope.
-        Verifies dual-biometric factors and returns a mutual token.
-        """
-        is_voice_valid = self.__process_voice(voice_data)
-        is_face_valid = self.__process_face(facial_data)
+    # --- القسم الأول: المصادقة الحيوية الثلاثية ---
 
-        if is_voice_valid and is_face_valid:
+    def __process_voice(self, data):
+        return True # محاكاة بصمة الصوت (Talk)
+
+    def __process_face(self, data):
+        return True # محاكاة بصمة الوجه
+
+    def verify_movement_pattern(self, motion_data):
+        """الطبقة الثالثة: بصمة الحركة (Liveness Detection)"""
+        return True # محاكاة حركة الجسم/الإيماءة
+
+    def execute_triple_auth(self, voice, face, motion):
+        """تنفيذ المصادقة الثلاثية الكاملة"""
+        if self.__process_voice(voice) and self.__process_face(face) and self.verify_movement_pattern(motion):
             return True, self.__create_mutual_token()
         return False, None
 
+    # --- القسم الثاني: نظام الاستعادة (Recovery System) ---
+
+    def emergency_recovery_auth(self, simple_code):
+        """
+        نظام الاستعادة (الخيار البسيط):
+        يستخدم في حال فشل الحساسات الحيوية أو نسيان النمط المعقد.
+        """
+        if simple_code == self.__recovery_code:
+            print("تم تفعيل نظام الاستعادة بنجاح.")
+            return True, self.__create_mutual_token()
+        return False, None
+
+    # --- القسم الثالث: التوكن المتبادل ---
+
     def __create_mutual_token(self):
-        """Generates a cryptographically strong Mutual Token (FD-STAR-AUTH)"""
+        """توليد التوكن المتبادل لضمان أمان العملية المالية"""
         token_id = secrets.token_hex(16)
         return f"FD_STAR_AUTH_{token_id}"
 
-    def __process_voice(self, data):
-        # Simulated Voice Recognition logic for 'Talk'
-        return True 
-
-    def __process_face(self, data):
-        # Simulated Facial Recognition logic
-        return True
-
+# للاستخدام المستقبلي:
+# engine = FlashDealSecurityEngine()
+# success, token = engine.execute_triple_auth("voice", "face", "motion")
