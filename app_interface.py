@@ -37,3 +37,31 @@ st.sidebar.header("حالة النظام الأمني")
 st.sidebar.write("✅ بصمة الصوت: مفعلة")
 st.sidebar.write("✅ بصمة الوجه: مفعلة")
 st.sidebar.write("✅ بصمة الحركة: مفعلة")
+import streamlit as st
+import numpy as np
+import cv2
+from core.motion_engine import FlashDealMotionEngine
+
+# استدعاء المحرك الذكي
+motion_detector = FlashDealMotionEngine()
+
+st.divider()
+st.header("🛂 Multi-Modal Authentication")
+st.info("قم بتأكيد هويتك الآن عبر 'بصمة الحركة' (Sign Auth)")
+
+# تشغيل الكاميرا داخل المتصفح
+captured_image = st.camera_input("اعرض حركتك السرية للكاميرا")
+
+if captured_image:
+    # تحويل الصورة الملتقطة لصيغة معالجة OpenCV
+    file_bytes = np.asarray(bytearray(captured_image.read()), dtype=np.uint8)
+    opencv_frame = cv2.imdecode(file_bytes, 1)
+    
+    # التحقق من بصمة الحركة ورسم النقاط
+    success, final_output = motion_detector.verify_motion(opencv_frame)
+    
+    if success:
+        st.success("✅ تم التحقق من الهوية حركياً! Identity Secured.")
+        st.image(final_output, channels="BGR", caption="FlashDeal Motion Signature Detected")
+    else:
+        st.warning("⚠️ لم يتم رصد حركة واضحة. يرجى إظهار يدك بوضوح أمام الكاميرا.")
