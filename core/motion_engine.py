@@ -4,8 +4,8 @@ import mediapipe as mp
 
 class FlashDealMotionEngine:
     def __init__(self):
-        """إعداد محرك رصد بصمة الحركة - FlashDeal Star"""
-        # الوصول المباشر للحلول لضمان التوافق مع Streamlit Cloud
+        """إعداد محرك رصد الحركة لـ FlashDeal Star"""
+        # الوصول المباشر للحلول لتجنب AttributeError في بيئة السحابة
         self.mp_hands = mp.solutions.hands
         self.mp_draw = mp.solutions.drawing_utils
         
@@ -17,11 +17,11 @@ class FlashDealMotionEngine:
         )
 
     def verify_motion(self, frame):
-        """التحقق من بصمة الحركة ورسم نقاط الاتصال"""
+        """التحقق من بصمة الحركة ورسم نقاط الهوية"""
         if frame is None:
             return False, None
 
-        # تحويل الصورة إلى RGB للمعالجة
+        # تحويل الصورة إلى RGB للمعالجة عبر MediaPipe
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         results = self.hands.process(rgb_frame)
         
@@ -29,7 +29,7 @@ class FlashDealMotionEngine:
         if results.multi_hand_landmarks:
             motion_detected = True
             for hand_landmarks in results.multi_hand_landmarks:
-                # رسم الهيكل العظمي لليد كبصمة أمان حركية
+                # رسم هيكل الحركة (بصمة الأمان)
                 self.mp_draw.draw_landmarks(
                     frame, 
                     hand_landmarks, 
