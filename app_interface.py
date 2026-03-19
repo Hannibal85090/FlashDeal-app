@@ -1,51 +1,27 @@
 import streamlit as st
+from streamlit_option_menu import option_menu
 import cv2
 import numpy as np
-from core.motion_engine import FlashDealMotionEngine
 
-# 1. إعدادات الصفحة
-st.set_page_config(page_title="FlashDeal Star", page_icon="🌟")
+# إعدادات الصفحة
+st.set_page_config(page_title="FlashDeal - FinTech", layout="wide")
 
-# 2. تهيئة محرك الحركة في ذاكرة الجلسة لضمان الاستقرار
-if 'motion_detector' not in st.session_state:
-    try:
-        st.session_state.motion_detector = FlashDealMotionEngine()
-    except Exception as e:
-        st.error(f"خطأ في تهيئة محرك الحركة: {e}")
-
-# 3. واجهة المستخدم
-st.title("🌟 FlashDeal Star")
-st.subheader("Talk. Pay. Done.")
-
-# الحالة في الجانب
+# القائمة الجانبية
 with st.sidebar:
-    st.header("حالة النظام الأمني")
-    st.write("✅ بصمة الصوت: مفعلة")
-    st.write("✅ بصمة الوجه: مفعلة")
-    st.write("✅ بصمة الحركة: مفعلة")
+    selected = option_menu(
+        menu_title="FlashDeal Navigation",
+        options=["الرئيسية", "التحليل الحركي", "الإعدادات"],
+        icons=["house", "activity", "gear"],
+        menu_icon="cast",
+        default_index=0,
+    )
 
-# 4. قسم التفاعل
-st.divider()
-if st.button("🎤 ابدأ التفاعل الصوتي (Talk)"):
-    with st.spinner('جاري الاستماع وتحليل الطلب...'):
-        st.info("🔓 يرجى تأكيد الهوية الحيوية (بصمة الحركة) لإتمام العملية")
+if selected == "الرئيسية":
+    st.title("🚀 FlashDeal: مستقبلك في التمويل التفاعلي")
+    st.write("مرحباً بك في منصة FlashDeal المطورة.")
 
-# 5. قسم المصادقة المتعددة (بصمة الحركة)
-st.divider()
-st.header("🛡️ المصادقة الحيوية (Motion Auth)")
-captured_image = st.camera_input("اعرض حركتك السرية للكاميرا")
-
-if captured_image and 'motion_detector' in st.session_state:
-    # تحويل الصورة الملتقطة لمعالجة OpenCV
-    file_bytes = np.asarray(bytearray(captured_image.read()), dtype=np.uint8)
-    opencv_frame = cv2.imdecode(file_bytes, 1)
-    
-    # تنفيذ عملية التحقق
-    success, final_output = st.session_state.motion_detector.verify_motion(opencv_frame)
-    
-    if success:
-        st.success("✅ تم التحقق من الهوية حركياً")
-        st.image(final_output, channels="BGR", caption="بصمة الحركة المكتشفة")
-        st.balloons()
-    else:
-        st.warning("⚠️ لم يتم رصد حركة واضحة. يرجى إظهار يدك بوضوح.")
+elif selected == "التحليل الحركي":
+    st.title("📊 نظام التحليل الحركي")
+    st.info("نظام الكشف عن الإيماءات يعمل الآن عبر OpenCV.")
+    # كود تجريبي للكاميرا
+    img_file_buffer = st.camera_input("قم بالتقاط صورة لاختبار النظام")
