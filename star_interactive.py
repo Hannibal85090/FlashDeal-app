@@ -1,59 +1,72 @@
 import streamlit as st
 import time
 
-# إعدادات الصفحة بجودة عالية
-st.set_page_config(page_title="FlashDeal Star", page_icon="⭐", layout="centered")
+# --- ١. إعدادات الصفحة ---
+st.set_page_config(page_title="MyFD Master System", layout="wide")
 
-# التنسيق البصري (CSS) للواجهة التفاعلية
-st.markdown("""
-    <style>
-    .main { background-color: #050505; color: #e0e0e0; font-family: 'Inter', sans-serif; }
-    .stButton>button { 
-        border-radius: 50%; width: 120px; height: 120px; 
-        background: radial-gradient(circle, #00d4ff 0%, #0056b3 100%);
-        border: none; color: white; font-weight: bold; box-shadow: 0 0 20px #00d4ff;
+# --- ٢. قاموس اللغات الاحترافي ---
+translations = {
+    "العربية": {
+        "title": "⚡ ⭐ نظام ماستر فلاش ديل",
+        "agent": "الوكيل الذكي",
+        "sync": "تفعيل المزامنة",
+        "deal": "🤝 إبرام الصفقة العالمية",
+        "success": "تمت العملية بنجاح! مبروك",
+        "cert": "شهادة الإتمام النهائية",
+        "token_label": "نظام التوكن المتبادل"
+    },
+    "English": {
+        "title": "⚡ ⭐ My FlashDeal Master System",
+        "agent": "Smart Agent",
+        "sync": "Sync Now",
+        "deal": "🤝 Execute Global Deal",
+        "success": "Transaction Successful! Congrats.",
+        "cert": "Final Completion Certificate",
+        "token_label": "Mutual Token System"
+    },
+    "Italiano": {
+        "title": "⚡ ⭐ MyFD Sistema Master",
+        "agent": "Agente Intelligente",
+        "sync": "Sincronizza Ora",
+        "deal": "🤝 Concludi l'Affare",
+        "success": "Transazione Riuscita! Congratulazioni.",
+        "cert": "Certificato di Completamento",
+        "token_label": "Sistema Token Mutuo"
+    },
+    "Français": {
+        "title": "⚡ ⭐ Système Master MyFD",
+        "agent": "Agent Intelligent",
+        "sync": "Synchroniser",
+        "deal": "🤝 Conclure l'Affaire",
+        "success": "Transaction Réussie ! Félicitations.",
+        "cert": "Certificat d'Achèvement",
+        "token_label": "Système de Jeton Mutuel"
     }
-    .stButton>button:hover { transform: scale(1.05); box-shadow: 0 0 30px #00d4ff; }
-    .slogan-text { font-size: 28px; font-weight: 800; color: #00d4ff; text-align: center; letter-spacing: 2px; }
-    .star-status { position: absolute; top: -50px; right: 10px; color: #39ff14; font-size: 14px; }
-    </style>
-    """, unsafe_allow_html=True)
+}
 
-# الجزء العلوي: حالة My FlashDeal Star
-col1, col2 = st.columns([4, 1])
-with col2:
-    st.markdown("<p class='star-status'>● My FlashDeal Star Connected</p>", unsafe_allow_html=True)
+# --- ٣. اختيار اللغة وتحديث الواجهة ---
+selected_lang = st.sidebar.selectbox("Language / اللغة", list(translations.keys()))
+t = translations[selected_lang] # هذا هو المتغير السحري الذي سيحدث كل شيء
 
-st.title("FlashDeal Project")
-st.write("---")
+# --- ٤. تطبيق النصوص الديناميكية ---
+st.markdown(f"<h1 style='text-align: center;'>{t['title']}</h1>", unsafe_allow_html=True)
 
-# اختيار اللغة (للتوسع العالمي)
-language = st.radio("Select Language / Choisir la langue", ("العربية", "Français"), horizontal=True)
+with st.sidebar:
+    st.markdown(f"### 🔐 {t['token_label']}")
+    if st.button(t['sync']):
+        st.success("Sync OK! ✅")
 
-# منطق التفاعل (Talk. Pay. Done.)
-if st.button("Talk / Parler"):
-    if language == "العربية":
-        st.info("🎤 أهلاً بك في FlashDeal. 'Star' متصل. تحدث...")
-    else:
-        st.info("🎤 Bienvenue sur FlashDeal. 'Star' est connecté. Parlez...")
-    
-    time.sleep(1.5)
-    st.success("✅ Order Captured: 1 Coffee / 1 Café")
-    
-    # محاكاة الأمان (Security & Token)
-    st.write("### Security Check / التحقق الأمني")
-    if st.checkbox("Verify with Fingerprint / بصمة الإصبع"):
-        with st.spinner("Generating Mutual Token..."):
-            time.sleep(1)
-            token = f"TOKEN-{int(time.time()) % 10000:04d}"
-            st.code(f"Mutual Token: {token}", language="bash")
-            st.balloons()
-            
-            # الشعار النهائي
-            if language == "العربية":
-                st.markdown("<p class='slogan-text'>تحدث. ادفع. تم.</p>", unsafe_allow_html=True)
-            else:
-                st.markdown("<p class='slogan-text'>Talk. Pay. Done.</p>", unsafe_allow_html=True)
+# تبويبات الوكيل
+st.subheader(t['agent'])
+t1, t2, t3 = st.tabs(["🎤 Voice", "👋 Sign", "⌨️ Text"])
+with t3:
+    st.chat_input(f"{t['agent']}...")
 
-st.write("---")
-st.caption("FlashDeal - High Quality Parallel Project 2026")
+# لحظة الحسم والاحتفالية
+st.divider()
+if st.button(t['deal'], use_container_width=True):
+    st.balloons()
+    st.snow()
+    st.success(t['success'])
+    st.write(f"**{t['cert']}:** MASTER-{int(time.time())}")
+    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
