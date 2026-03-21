@@ -1,72 +1,74 @@
 import streamlit as st
 import time
 
-# --- ١. إعدادات الصفحة ---
-st.set_page_config(page_title="MyFD Master System", layout="wide")
+# --- ١. إعدادات الجمال الفائق ---
+st.set_page_config(page_title="FlashDeal Universal Interactive", page_icon="⭐", layout="wide")
 
-# --- ٢. قاموس اللغات الاحترافي ---
-translations = {
-    "العربية": {
-        "title": "⚡ ⭐ نظام ماستر فلاش ديل",
-        "agent": "الوكيل الذكي",
-        "sync": "تفعيل المزامنة",
-        "deal": "🤝 إبرام الصفقة العالمية",
-        "success": "تمت العملية بنجاح! مبروك",
-        "cert": "شهادة الإتمام النهائية",
-        "token_label": "نظام التوكن المتبادل"
-    },
-    "English": {
-        "title": "⚡ ⭐ My FlashDeal Master System",
-        "agent": "Smart Agent",
-        "sync": "Sync Now",
-        "deal": "🤝 Execute Global Deal",
-        "success": "Transaction Successful! Congrats.",
-        "cert": "Final Completion Certificate",
-        "token_label": "Mutual Token System"
-    },
-    "Italiano": {
-        "title": "⚡ ⭐ MyFD Sistema Master",
-        "agent": "Agente Intelligente",
-        "sync": "Sincronizza Ora",
-        "deal": "🤝 Concludi l'Affare",
-        "success": "Transazione Riuscita! Congratulazioni.",
-        "cert": "Certificato di Completamento",
-        "token_label": "Sistema Token Mutuo"
-    },
-    "Français": {
-        "title": "⚡ ⭐ Système Master MyFD",
-        "agent": "Agent Intelligent",
-        "sync": "Synchroniser",
-        "deal": "🤝 Conclure l'Affaire",
-        "success": "Transaction Réussie ! Félicitations.",
-        "cert": "Certificat d'Achèvement",
-        "token_label": "Système de Jeton Mutuel"
+# CSS متطور لتخريج الجمال (ظلال، حواف ناعمة، ألوان سوني)
+st.markdown("""
+    <style>
+    .main { background: linear-gradient(to bottom, #00050a, #011627); color: white; }
+    .stButton>button { 
+        border-radius: 20px; background: linear-gradient(45deg, #004e92, #000428);
+        border: 1px solid #4facfe; color: white; height: 3.5em; transition: 0.5s;
     }
+    .stButton>button:hover { transform: scale(1.02); border: 1px solid #fff; }
+    .glass-card { 
+        padding: 25px; border-radius: 20px; 
+        background: rgba(255, 255, 255, 0.05); 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px); margin-bottom: 20px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# --- ٢. إدارة اللغات (القاموس الماسي) ---
+LANGS = {
+    'Arabic': {'t': "فلاش ديل يونيفرسال", 'm': "تحدث. ادفع. تم.", 'b': "إبرام الصفقة", 's': "مزامنة سادن"},
+    'English': {'t': "FlashDeal Universal", 'm': "Talk. Pay. Done.", 'b': "Execute Deal", 's': "Saden Sync"},
+    'Italiano': {'t': "FlashDeal Universale", 'm': "Parla. Paga. Fatto.", 'b': "Concludi", 's': "Sincronizza"},
+    'Français': {'t': "FlashDeal Universel", 'm': "Parlez. Payez. Fait.", 'b': "Conclure", 's': "Synchroniser"}
 }
 
-# --- ٣. اختيار اللغة وتحديث الواجهة ---
-selected_lang = st.sidebar.selectbox("Language / اللغة", list(translations.keys()))
-t = translations[selected_lang] # هذا هو المتغير السحري الذي سيحدث كل شيء
-
-# --- ٤. تطبيق النصوص الديناميكية ---
-st.markdown(f"<h1 style='text-align: center;'>{t['title']}</h1>", unsafe_allow_html=True)
-
 with st.sidebar:
-    st.markdown(f"### 🔐 {t['token_label']}")
-    if st.button(t['sync']):
-        st.success("Sync OK! ✅")
+    st.image("https://img.icons8.com/fluency/96/000000/star--v1.png", width=70)
+    choice = st.selectbox("🌐 Choose Excellence", list(LANGS.keys()))
+    ui = LANGS[choice]
+    st.markdown(f"**{ui['m']}**")
 
-# تبويبات الوكيل
-st.subheader(t['agent'])
-t1, t2, t3 = st.tabs(["🎤 Voice", "👋 Sign", "⌨️ Text"])
-with t3:
-    st.chat_input(f"{t['agent']}...")
+# --- ٣. الواجهة التفاعلية (The Interactive Core) ---
+st.markdown(f"<h1 style='text-align: center; color: #4facfe;'>{ui['t']} ⭐</h1>", unsafe_allow_html=True)
 
-# لحظة الحسم والاحتفالية
+# قسم التوكن المتبادل (تصميم زجاجي)
+st.markdown(f'<div class="glass-card"><h3>🔒 {ui["s"]}</h3>', unsafe_allow_html=True)
+c1, c2 = st.columns([3, 1])
+with c1:
+    tk = st.text_input("Mutual Token ID", type="password", label_visibility="collapsed")
+with c2:
+    if st.button("Link 🛡️"):
+        st.toast("Connecting to FlashDeal SIM...")
+        time.sleep(1); st.success("Linked!")
+st.markdown('</div>', unsafe_allow_html=True)
+
+# تبويبات الوكيل الذكي (الإبداع والإقناع)
+tab1, tab2, tab3 = st.tabs(["🎙️ Voice Control", "🖐️ Gesture AI", "💬 Smart Chat"])
+with tab3:
+    st.chat_input("Ask Sony-Agent...")
+
+# --- ٤. مركز التحكم (Home & Car Hub) ---
+st.markdown("### 🏠🚗 Smart Hub Control")
+col_a, col_b = st.columns(2)
+with col_a:
+    if st.button("🔑 Start Engine (Remote)"):
+        with st.status("Verifying Alpha Code..."):
+            time.sleep(1); st.success("🚗 Engine On!")
+with col_b:
+    if st.button("💡 Smart Home Mode"):
+        st.snow(); st.toast("Welcome Home!")
+
+# --- ٥. حفل الختام (إبرام الصفقة) ---
 st.divider()
-if st.button(t['deal'], use_container_width=True):
+if st.button(f"✨ {ui['b']} ✨", type="primary"):
     st.balloons()
-    st.snow()
-    st.success(t['success'])
-    st.write(f"**{t['cert']}:** MASTER-{int(time.time())}")
-    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3")
+    st.markdown(f"<div class='glass-card' style='text-align: center;'><h2>✅ {ui['b']} Successful!</h2><p>Certificate: STAR-{int(time.time())}</p></div>", unsafe_allow_html=True)
