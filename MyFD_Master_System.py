@@ -136,4 +136,3 @@ if st.button(t['buy'], type="primary", use_container_width=True):
     add_to_memory("Deal Concluded Successfully")
     st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3")
     st.markdown(f"<div class='glass-card' style='text-align: center;'><h2>🏆 {t['success']}</h2><p>Cert: STAR-UNIV-2026-{int(time.time())}</p></div>", unsafe_allow_html=True)
-
