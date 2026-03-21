@@ -1,3 +1,35 @@
+Import streamlit as st
+import time
+
+# --- ١. تعريف الذاكرة السيادية (أهم خطوة لربط الصوت بالذاكرة) ---
+if 'history' not in st.session_state:
+    st.session_state.history = []
+
+def add_to_memory(action):
+    """تخزين الحدث في الذاكرة لضمان عدم ضياعه بتغير الصوت"""
+    timestamp = time.strftime("%H:%M:%S")
+    st.session_state.history.append(f"[{timestamp}] - {action}")
+
+# --- ٢. وحدة الطوارئ الذكية (SOS) - مطابقة للصورة 1000023601 ---
+def trigger_emergency_protocol():
+    st.error("🚨 SOS: Emergency Protocol Activated!")
+    add_to_memory("SOS Triggered - Alerts sent to Master Alpha Hub")
+    # هنا يتم الربط المستقبلي مع ديسكورد
+    with st.status("Verifying Security Links..."):
+        time.sleep(1)
+        st.warning("All Smart Links: IMMOBILIZED 🔒")
+
+# --- ٣. التحكم في الواجهة (Sidebar) ---
+with st.sidebar:
+    st.title("🛡️ Master Controls")
+    if st.button("🔔 Activate SOS Mode", use_container_width=True):
+        trigger_emergency_protocol()
+    
+    st.divider()
+    # عرض سجل الذاكرة للتأكد من الثبات
+    with st.expander("📜 Unified Memory Log"):
+        for item in reversed(st.session_state.history):
+            st.write(item)
 import streamlit as st
 from streamlit_option_menu import option_menu
 import time
@@ -79,22 +111,4 @@ elif selected in [L["menu"][4]]: # مركز المساعدة
     with st.expander(L["help_q1"]): st.write("...")
 
 st.markdown("</div>", unsafe_allow_html=True)
-# --- وحدة الطوارئ والذكاء المحيطي (20 سطر أو أقل) ---
-def trigger_emergency_protocol():
-    st.error("⚠️ SOS: Emergency Protocol Activated!")
-    add_to_memory("SOS Triggered - Alerts sent to Master Alpha")
-    # محاكاة إرسال إشعار لديسكورد عبر Webhook
-    with st.spinner("Notifying Security via Saden Link..."):
-        time.sleep(1.5)
-        st.warning("All smart locks engaged. Car engine immobilized. 🔒")
-
-# إضافة زر الطوارئ في الواجهة (Sidebar)
-with st.sidebar:
-    st.divider()
-    if st.button("🔔 Activate SOS Mode", type="secondary"):
-        trigger_emergency_protocol()
-    
-    # عرض حالة الربط مع ديسكورد (Global Synergy)
-    is_synced = "Connected 🟢" if st.session_state.get('history') else "Offline 🔴"
-    st.info(f"Discord Synergy: {is_synced}")
-
+ تثبت من الدالة في الاول او اعدلي المحتو ى كله لانسخه
