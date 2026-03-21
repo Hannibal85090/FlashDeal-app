@@ -1,72 +1,26 @@
+# هيكل النسخة الملحمية - FlashDeal Star Universal
 import streamlit as st
-import time
 
-# --- ١. إعدادات الصفحة ---
-st.set_page_config(page_title="MyFD Master System", layout="wide")
+# 1. إعدادات الصفحة والمعايير (تجنب أخطاء العرض)
+st.set_page_config(page_title="My FlashDeal Star Universal", layout="wide")
 
-# --- ٢. قاموس اللغات الاحترافي ---
-translations = {
-    "العربية": {
-        "title": "⚡ ⭐ نظام ماستر فلاش ديل",
-        "agent": "الوكيل الذكي",
-        "sync": "تفعيل المزامنة",
-        "deal": "🤝 إبرام الصفقة العالمية",
-        "success": "تمت العملية بنجاح! مبروك",
-        "cert": "شهادة الإتمام النهائية",
-        "token_label": "نظام التوكن المتبادل"
-    },
-    "English": {
-        "title": "⚡ ⭐ My FlashDeal Master System",
-        "agent": "Smart Agent",
-        "sync": "Sync Now",
-        "deal": "🤝 Execute Global Deal",
-        "success": "Transaction Successful! Congrats.",
-        "cert": "Final Completion Certificate",
-        "token_label": "Mutual Token System"
-    },
-    "Italiano": {
-        "title": "⚡ ⭐ MyFD Sistema Master",
-        "agent": "Agente Intelligente",
-        "sync": "Sincronizza Ora",
-        "deal": "🤝 Concludi l'Affare",
-        "success": "Transazione Riuscita! Congratulazioni.",
-        "cert": "Certificato di Completamento",
-        "token_label": "Sistema Token Mutuo"
-    },
-    "Français": {
-        "title": "⚡ ⭐ Système Master MyFD",
-        "agent": "Agent Intelligent",
-        "sync": "Synchroniser",
-        "deal": "🤝 Conclure l'Affaire",
-        "success": "Transaction Réussie ! Félicitations.",
-        "cert": "Certificat d'Achèvement",
-        "token_label": "Système de Jeton Mutuel"
-    }
-}
+# 2. محرك اللغات (العربية، الإنجليزية، الإيطالية، الفرنسية)
+languages = {"العربية": "ar", "English": "en", "Italiano": "it", "Français": "fr"}
+selected_lang = st.sidebar.selectbox("اللغة / Language", list(languages.keys()))
 
-# --- ٣. اختيار اللغة وتحديث الواجهة ---
-selected_lang = st.sidebar.selectbox("Language / اللغة", list(translations.keys()))
-t = translations[selected_lang] # هذا هو المتغير السحري الذي سيحدث كل شيء
+# 3. واجهة الوكيل الذكي (Multimodal Protocol)
+st.title("⚡ ⭐ My FlashDeal Star Universal")
+st.subheader("الوكيل الذكي (تحدث. ادفع. تم.)")
 
-# --- ٤. تطبيق النصوص الديناميكية ---
-st.markdown(f"<h1 style='text-align: center;'>{t['title']}</h1>", unsafe_allow_html=True)
+tabs = st.tabs(["🎤 Audio (Talk)", "👋 Sign Language", "⌨️ Text Chat"])
+with tabs[2]:
+    st.text_input("أمرك المكتوب:", key="cmd")
+    if st.button("إرسال"):
+        st.write("جاري المعالجة...")
 
-with st.sidebar:
-    st.markdown(f"### 🔐 {t['token_label']}")
-    if st.button(t['sync']):
-        st.success("Sync OK! ✅")
-
-# تبويبات الوكيل
-st.subheader(t['agent'])
-t1, t2, t3 = st.tabs(["🎤 Voice", "👋 Sign", "⌨️ Text"])
-with t3:
-    st.chat_input(f"{t['agent']}...")
-
-# لحظة الحسم والاحتفالية
-st.divider()
-if st.button(t['deal'], use_container_width=True):
+# 4. ركن الشفافية وإبرام الصفقة (البالونات والشهادة)
+if st.button("إبرام الصفقة العالمية 🤝"):
     st.balloons()
-    st.snow()
-    st.success(t['success'])
-    st.write(f"**{t['cert']}:** MASTER-{int(time.time())}")
-    st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+    st.success("تمت العملية بنجاح! مبروك صفتك.")
+    st.audio("celebration_music.mp3") # ميزة الموسيقى
+    st.info("شهادة إتمام الصفقة: STAR-UNIV-2026-XXXX")
