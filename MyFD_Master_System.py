@@ -1,74 +1,93 @@
 import streamlit as st
 import time
 
-# --- ١. إعدادات الجمال الفائق ---
-st.set_page_config(page_title="FlashDeal Universal Interactive", page_icon="⭐", layout="wide")
+# --- ١. إعدادات الهوية والجمال (Sony Elite Style) ---
+st.set_page_config(page_title="FlashDeal Star Universal", page_icon="🌟", layout="wide")
 
-# CSS متطور لتخريج الجمال (ظلال، حواف ناعمة، ألوان سوني)
 st.markdown("""
     <style>
-    .main { background: linear-gradient(to bottom, #00050a, #011627); color: white; }
+    .main { background: linear-gradient(135deg, #00050a 0%, #011627 100%); color: #ffffff; }
     .stButton>button { 
-        border-radius: 20px; background: linear-gradient(45deg, #004e92, #000428);
-        border: 1px solid #4facfe; color: white; height: 3.5em; transition: 0.5s;
+        width: 100%; border-radius: 15px; background: linear-gradient(45deg, #004e92, #000428);
+        border: 1px solid #4facfe; color: white; font-weight: bold; height: 3.8em; transition: 0.4s;
     }
-    .stButton>button:hover { transform: scale(1.02); border: 1px solid #fff; }
+    .stButton>button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,78,146,0.4); }
     .glass-card { 
-        padding: 25px; border-radius: 20px; 
-        background: rgba(255, 255, 255, 0.05); 
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px); margin-bottom: 20px;
+        padding: 25px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); 
+        border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); margin-bottom: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- ٢. إدارة اللغات (القاموس الماسي) ---
-LANGS = {
-    'Arabic': {'t': "فلاش ديل يونيفرسال", 'm': "تحدث. ادفع. تم.", 'b': "إبرام الصفقة", 's': "مزامنة سادن"},
-    'English': {'t': "FlashDeal Universal", 'm': "Talk. Pay. Done.", 'b': "Execute Deal", 's': "Saden Sync"},
-    'Italiano': {'t': "FlashDeal Universale", 'm': "Parla. Paga. Fatto.", 'b': "Concludi", 's': "Sincronizza"},
-    'Français': {'t': "FlashDeal Universel", 'm': "Parlez. Payez. Fait.", 'b': "Conclure", 's': "Synchroniser"}
+# --- ٢. محرك اللغات الرباعي الكامل ---
+LANG_DICT = {
+    'Arabic': {
+        'title': "نجم فلاش ديل العالمي 🌟", 'motto': "تحدث. ادفع. تم.",
+        'agent': "الوكيل الذكي (Multimodal)", 'saden': "أمان سادن: التوكن المتبادل",
+        'home_car': "التحكم الذكي (المنزل والسيارة) 🏠🚗", 'product': "سماعات الرأس (إصدار النجم)",
+        'buy': "إبرام الصفقة العالمية 🚀", 'success': "تمت العملية بنجاح! مبروك شريكي",
+        'sync': "مزامنة التوكن 🛡️", 'car': "تشغيل السيارة 🔑", 'home': "إدارة المنزل 🏠"
+    },
+    'English': {
+        'title': "FlashDeal Star Universal 🌟", 'motto': "Talk. Pay. Done.",
+        'agent': "Smart Agent (Multimodal)", 'saden': "Saden Security: Mutual Token",
+        'home_car': "Smart Control (Home & Car) 🏠🚗", 'product': "Headphones (Star Edition)",
+        'buy': "Global Deal Execution 🚀", 'success': "Process Completed Successfully!",
+        'sync': "Sync Token 🛡️", 'car': "Start Car 🔑", 'home': "Manage Home 🏠"
+    },
+    'Italiano': {
+        'title': "FlashDeal Star Universale 🌟", 'motto': "Parla. Paga. Fatto.",
+        'agent': "Agente Intelligente", 'saden': "Sicurezza Saden: Token Reciproco",
+        'home_car': "Controllo Intelligente (Casa e Auto) 🏠🚗", 'product': "Cuffie (Edizione Star)",
+        'buy': "Concludi l'Affare 🚀", 'success': "Operazione riuscita!",
+        'sync': "Sincronizza 🛡️", 'car': "Avvia Auto 🔑", 'home': "Gestisci Casa 🏠"
+    },
+    'Français': {
+        'title': "FlashDeal Star Universel 🌟", 'motto': "Parlez. Payez. Fait.",
+        'agent': "Agent Intelligent", 'saden': "Sécurité Saden: Token Mutuel",
+        'home_car': "Contrôle Intelligent (Maison & Voiture) 🏠🚗", 'product': "Casque (Édition Star)",
+        'buy': "Conclure l'Accord 🚀", 'success': "Opération terminée!",
+        'sync': "Synchroniser 🛡️", 'car': "Démarrer 🔑", 'home': "Gérer Maison 🏠"
+    }
 }
 
+# --- ٣. القائمة الجانبية وإدارة الحالة ---
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/000000/star--v1.png", width=70)
-    choice = st.selectbox("🌐 Choose Excellence", list(LANGS.keys()))
-    ui = LANGS[choice]
-    st.markdown(f"**{ui['m']}**")
+    selected_lang = st.selectbox("🌐 Global Language", list(LANG_DICT.keys()))
+    t = LANG_DICT[selected_lang]
+    st.markdown(f"**Slogan:** `{t['motto']}`")
+    st.divider()
+    acc = st.radio("Access Level", ["Standard", "Master Alpha 🔓"])
 
-# --- ٣. الواجهة التفاعلية (The Interactive Core) ---
-st.markdown(f"<h1 style='text-align: center; color: #4facfe;'>{ui['t']} ⭐</h1>", unsafe_allow_html=True)
+# --- ٤. الواجهة الرئيسية (التفاعل الشامل) ---
+st.markdown(f"<h1 style='text-align: center; color: #4facfe;'>{t['title']}</h1>", unsafe_allow_html=True)
 
-# قسم التوكن المتبادل (تصميم زجاجي)
-st.markdown(f'<div class="glass-card"><h3>🔒 {ui["s"]}</h3>', unsafe_allow_html=True)
+# أ. التوكن المتبادل والوكيل
+st.markdown(f'<div class="glass-card"><h3>🔒 {t["saden"]}</h3>', unsafe_allow_html=True)
 c1, c2 = st.columns([3, 1])
-with c1:
-    tk = st.text_input("Mutual Token ID", type="password", label_visibility="collapsed")
-with c2:
-    if st.button("Link 🛡️"):
-        st.toast("Connecting to FlashDeal SIM...")
-        time.sleep(1); st.success("Linked!")
+with c1: st.text_input("Token ID", type="password", label_visibility="collapsed")
+with c2: 
+    if st.button(t['sync']): st.success("Linked! ✅")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# تبويبات الوكيل الذكي (الإبداع والإقناع)
-tab1, tab2, tab3 = st.tabs(["🎙️ Voice Control", "🖐️ Gesture AI", "💬 Smart Chat"])
-with tab3:
-    st.chat_input("Ask Sony-Agent...")
+# ب. الوكيل الذكي (تبويبات)
+tab1, tab2, tab3 = st.tabs(["🎙️ Voice", "👋 Sign", "⌨️ Text"])
+with tab1: st.button(f"{t['motto']} (Mic Active)")
+with tab3: st.chat_input("Sony-Agent...")
 
-# --- ٤. مركز التحكم (Home & Car Hub) ---
-st.markdown("### 🏠🚗 Smart Hub Control")
-col_a, col_b = st.columns(2)
-with col_a:
-    if st.button("🔑 Start Engine (Remote)"):
-        with st.status("Verifying Alpha Code..."):
-            time.sleep(1); st.success("🚗 Engine On!")
-with col_b:
-    if st.button("💡 Smart Home Mode"):
-        st.snow(); st.toast("Welcome Home!")
+# ج. التحكم الذكي (Hub)
+st.markdown(f"### {t['home_car']}")
+ca, cb = st.columns(2)
+with ca: 
+    if st.button(t['car']): 
+        with st.status("Linking..."): time.sleep(1); st.success("🚗 Engine On!")
+with cb:
+    if st.button(t['home']): st.toast("🏠 Welcome Home Mode Active")
 
-# --- ٥. حفل الختام (إبرام الصفقة) ---
+# --- ٥. إبرام الصفقة (الاحتفالية الكبرى) ---
 st.divider()
-if st.button(f"✨ {ui['b']} ✨", type="primary"):
-    st.balloons()
+if st.button(t['buy'], type="primary", use_container_width=True):
+    st.balloons(); st.snow()
     st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3")
-    st.markdown(f"<div class='glass-card' style='text-align: center;'><h2>✅ {ui['b']} Successful!</h2><p>Certificate: STAR-{int(time.time())}</p></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='glass-card' style='text-align: center;'><h2>🏆 {t['success']}</h2><p>Cert: STAR-UNIV-2026-{int(time.time())}</p></div>", unsafe_allow_html=True)
