@@ -5,6 +5,15 @@
 
 ---
 
+### 🤖 The Brain: FlashDeal AI Agent
+Our core logic is handled by the **FlashDealAgent.sol** smart contract. 
+> **Identity Verification:** View the official [Agent Identity JSON](https://github.com/Hannibal85090/FlashDeal-app/blob/main/agent_identity.json) for digital footprint verification.
+> 
+> 🔗 **Technical Support Agent (Live Interaction):**
+> To interact with our specialized Technical Agent and get real-time answers about the **ULTRA Biometric Shield**, use the link below:
+> [**https://g.co/gemini/share/62a0e4666145**](https://g.co/gemini/share/62a0e4666145)
+
+---
 
 ## 🛡️ Innovative Security (Triple-Layer Bio-Auth)
 My FlashDeal Star implements a cutting-edge security protocol to protect users:
@@ -20,6 +29,7 @@ The project is built with a modular, scalable structure:
 1.  **Core Engine:** Advanced security and voice processing modules.
 2.  **Main Orchestrator:** The "Brain" that links voice intent with secure execution.
 3.  **Streamlit Interface:** A sleek, user-friendly frontend for real-time interaction.
+    👉 [**Live Streamlit App**](https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/)
 
 ---
 
@@ -29,6 +39,11 @@ The project is built with a modular, scalable structure:
 * **Dedicated Infrastructure:** Issuing specialized FlashDeal SIM cards for enhanced communication privacy.
 
 ---
+
+## 🔗 Official Links
+* **GitHub Repository:** [https://github.com/Hannibal85090/FlashDeal-app](https://github.com/Hannibal85090/FlashDeal-app)
+* **Project Showcase:** [Discord Server](https://discord.com/channels/1344421115865464872/1344421116347809805)
+
+---
 **Developed by:** Ali Arfaoui  
 *FlashDeal Project - Empowering Future Finance.*
-https://flashdeal-app-njpebdrxnbynngjvkdkhmq.streamlit.app/
