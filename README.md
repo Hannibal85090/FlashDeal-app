@@ -39,6 +39,8 @@ The project is built with a modular, scalable structure:
 * **Dedicated Infrastructure:** Issuing specialized FlashDeal SIM cards for enhanced communication privacy.
 
 ---
+> 📜 **Read our official [Universal Manifesto & 12 Pillars of Inclusion](./MANIFESTO.md)**
+
 
 ## 🔗 Official Links
 * **GitHub Repository:** [https://github.com/Hannibal85090/FlashDeal-app](https://github.com/Hannibal85090/FlashDeal-app)
