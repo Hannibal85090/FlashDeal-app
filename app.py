@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 
-st.set_page_config(page_title="FlashDeal Star Universal", page_icon="🌟", layout="wide")
+st.set_page_config(page_title="My FlashDeal Star", page_icon="🌟", layout="wide")
 
 if 'history' not in st.session_state:
     st.session_state.history=[]
@@ -48,10 +48,10 @@ body{background:linear-gradient(135deg,#00050a 0%,#011627 100%);color:#ffffff;}
 """,unsafe_allow_html=True)
 
 LANG_DICT={
-'English':{'title':"FlashDeal Star Universal 🌟",'motto':"Talk. Pay. Done.",'saden':"Saden Security: Mutual Token",'home_car':"Smart Control 🏠🚗",'buy':"Global Deal Execution 🚀",'success':"Process Completed Successfully!",'sync':"Sync Token 🛡️",'car':"Start Car 🔑",'home':"Manage Home 🏠",'sos':"Activate SOS Mode 🔔",'mem':"📜 Unified Memory Log"},
-'Français':{'title':"FlashDeal Star Universel 🌟",'motto':"Parlez. Payez. Fait.",'saden':"Sécurité Saden: Token Mutuel",'home_car':"Contrôle Maison & Voiture 🏠🚗",'buy':"Conclure l'Accord 🚀",'success':"Opération terminée!",'sync':"Synchroniser 🛡️",'car':"Démarrer 🔑",'home':"Gérer Maison 🏠",'sos':"Activer SOS 🔔",'mem':"📜 Journal de Mémoire"},
-'Italiano':{'title':"FlashDeal Star Universale 🌟",'motto':"Parla. Paga. Fatto.",'saden':"Sicurezza Saden: Token Reciproco",'home_car':"Controllo Casa e Auto 🏠🚗",'buy':"Concludi l'Affare 🚀",'success':"Operazione riuscita!",'sync':"Sincronizza 🛡️",'car':"Avvia Auto 🔑",'home':"Gestisci Casa 🏠",'sos':"Attiva SOS 🔔",'mem':"📜 Registro di Memoria"},
-'Arabic':{'title':"نجم فلاش ديل العالمي 🌟",'motto':"تحدث. ادفع. تم.",'saden':"أمان سادن: التوكن المتبادل",'home_car':"التحكم الذكي 🏠🚗",'buy':"إبرام الصفقة العالمية 🚀",'success':"تمت العملية بنجاح!",'sync':"مزامنة التوكن 🛡️",'car':"تشغيل السيارة 🔑",'home':"إدارة المنزل 🏠",'sos':"تفعيل وضع الطوارئ 🔔",'mem':"📜 سجل الذاكرة الموحد"}}
+'English':{'motto':"Talk. Pay. Done.",'saden':"Saden Security: Mutual Token",'home_car':"Smart Control 🏠🚗",'buy':"Global Deal Execution 🚀",'success':"Process Completed Successfully!",'sync':"Sync Token 🛡️",'car':"Start Car 🔑",'home':"Manage Home 🏠",'sos':"Activate SOS Mode 🔔",'mem':"📜 Unified Memory Log"},
+'Français':{'motto':"Parlez. Payez. Fait.",'saden':"Sécurité Saden: Token Mutuel",'home_car':"Contrôle Maison & Voiture 🏠🚗",'buy':"Conclure l'Accord 🚀",'success':"Opération terminée!",'sync':"Synchroniser 🛡️",'car':"Démarrer 🔑",'home':"Gérer Maison 🏠",'sos':"Activer SOS 🔔",'mem':"📜 Journal de Mémoire"},
+'Italiano':{'motto':"Parla. Paga. Fatto.",'saden':"Sicurezza Saden: Token Reciproco",'home_car':"Controllo Casa e Auto 🏠🚗",'buy':"Concludi l'Affare 🚀",'success':"Operazione riuscita!",'sync':"Sincronizza 🛡️",'car':"Avvia Auto 🔑",'home':"Gestisci Casa 🏠",'sos':"Attiva SOS 🔔",'mem':"📜 Registro di Memoria"},
+'Arabic':{'motto':"تحدث. ادفع. تم.",'saden':"أمان سادن: التوكن المتبادل",'home_car':"التحكم الذكي 🏠🚗",'buy':"إبرام الصفقة العالمية 🚀",'success':"تمت العملية بنجاح!",'sync':"مزامنة التوكن 🛡️",'car':"تشغيل السيارة 🔑",'home':"إدارة المنزل 🏠",'sos':"تفعيل وضع الطوارئ 🔔",'mem':"📜 سجل الذاكرة الموحد"}}
 
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/000000/star--v1.png",width=60)
@@ -68,7 +68,10 @@ with st.sidebar:
     st.divider()
     acc=st.radio("Access Level",["Standard","Master Alpha 🔓"])
 
-st.markdown(f"<h1 style='text-align:center;color:#000000;text-shadow:0 0 10px #444444;'>{t['title']}</h1>",unsafe_allow_html=True)
+# --- العنوان الجديد مع التاريخ والتوقيت ---
+current_time=time.strftime("%d/%m/%Y - %H:%M:%S")
+st.markdown("<h1 style='text-align:center;color:#000000;text-shadow:0 0 10px #444444;'>🌟 My FlashDeal Star 🌟</h1>",unsafe_allow_html=True)
+st.markdown(f"<p style='text-align:center;color:#4facfe;'>🕒 Current Time: {current_time}</p>",unsafe_allow_html=True)
 st.markdown('<div class="star">★</div>',unsafe_allow_html=True)
 
 cols=st.columns(4)
@@ -112,7 +115,7 @@ with colB:
         st.progress(100);st.balloons();st.snow()
         add_to_memory("Deal Concluded Successfully")
         st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3")
-        st.markdown(f"<div class='glass-card' style='text-align:center;'><h2>🏆 {t['success']}</h2><p>Certificate Code: STAR-UNIV-2026-{int(time.time())}</p><p>Status: ✅ Validated</p><p>Date: 22/03/2026</p></div>",unsafe_allow_html=True)
+        st.markdown(f"<div class='glass-card' style='text-align:center;'><h2>🏆 {t['success']}</h2><p>Certificate Code: STAR-UNIV-2026-{int(time.time())}</p><p>Status: ✅ Validated</p><p>Date: {current_time}</p></div>",unsafe_allow_html=True)
 
 # --- التعرف البيومتري عبر الكاميرا ---
 st.divider()
