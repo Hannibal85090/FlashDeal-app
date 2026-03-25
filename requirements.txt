@@ -3,4 +3,6 @@ opencv-python-headless
 mediapipe
 protobuf
 numpy
+streamlit-mic-recorder
+
 
