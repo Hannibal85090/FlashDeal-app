@@ -1,12 +1,10 @@
 import streamlit as st
 import time
-# استيراد الوكيل من ملفه الخاص الذي أنشأته
-from sony_agent import render_sony_interface 
+import streamlit.components.v1 as components
+from sony_agent import render_sony_interface
 
-# --- إعدادات الصفحة ---
 st.set_page_config(page_title="FlashDeal Star", page_icon="🌟", layout="wide")
 
-# --- تهيئة الذاكرة الموحدة ---
 if 'history' not in st.session_state:
     st.session_state.history = []
 
@@ -14,56 +12,51 @@ def add_to_memory(action):
     timestamp = time.strftime("%H:%M:%S")
     st.session_state.history.append(f"[{timestamp}] - {action}")
 
-# --- تنسيق الواجهة ---
-st.markdown("""
-<style>
-    .star {font-size:80px; text-align:center; margin:10px 0;}
-    .glass-card {padding:20px; border-radius:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(10px);}
-    .log-text {font-size:0.8rem; color:#4facfe; font-family:'Courier New',monospace;}
-</style>
-""", unsafe_allow_html=True)
+# القاموس الكامل بجميع اللغات
+LANG_DICT = {
+    'English': {'motto':"Talk. Pay. Done.", 'saden':"Saden Security: Mutual Token", 'buy':"Global Deal Execution 🚀", 'success':"Process Completed!", 'car':"Start Car 🔑", 'home':"Manage Home 🏠", 'mem':"📜 Unified Memory Log"},
+    'Français': {'motto':"Parlez. Payez. Fait.", 'saden':"Sécurité Saden: Token Mutuel", 'buy':"Conclure l'Accord 🚀", 'success':"Opération terminée!", 'car':"Démarrer 🔑", 'home':"Gérer Maison 🏠", 'mem':"📜 Journal de Mémoire"},
+    'Italiano': {'motto':"Parla. Paga. Fatto.", 'saden':"Sicurezza Saden: Token Reciproco", 'buy':"Concludi l'Affare 🚀", 'success':"Operazione riuscita!", 'car':"Avvia Auto 🔑", 'home':"Gestisci Casa 🏠", 'mem':"📜 Registro di Memoria"},
+    'Arabic': {'motto':"تحدث. ادفع. تم.", 'saden':"أمان سادن: التوكن المتبادل", 'buy':"إبرام الصفقة العالمية 🚀", 'success':"تمت العملية بنجاح!", 'car':"تشغيل السيارة 🔑", 'home':"إدارة المنزل 🏠", 'mem':"📜 سجل الذاكرة الموحد"}
+}
 
-# --- القائمة الجانبية (Sidebar) ---
 with st.sidebar:
-    st.title("🌟 Control Hub")
-    selected_lang = st.selectbox("🌐 Language", ["English", "Arabic"])
-    st.divider()
-    with st.expander("📜 Unified Memory Log", expanded=True):
+    st.image("https://img.icons8.com/fluency/96/000000/star--v1.png", width=60)
+    selected_lang = st.selectbox("🌐 Global Language", list(LANG_DICT.keys()))
+    t = LANG_DICT[selected_lang]
+    with st.expander(t['mem'], expanded=True):
         for item in reversed(st.session_state.history):
-            st.markdown(f"<p class='log-text'>{item}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color:#4facfe; font-size:0.8rem;'>{item}</p>", unsafe_allow_html=True)
 
-# --- العنوان الرئيسي ---
-st.markdown("<h1 style='text-align:center;'>🌟 My FlashDeal Star 🌟</h1>", unsafe_allow_html=True)
-st.markdown(f"<p style='text-align:center;'>🕒 {time.strftime('%d/%m/%Y')}</p>", unsafe_allow_html=True)
-st.markdown('<div class="star">★</div>', unsafe_allow_html=True)
+# العنوان
+st.markdown(f"<h1 style='text-align:center;'>🌟 My FlashDeal Star 🌟</h1>", unsafe_allow_html=True)
+st.markdown(f"<p style='text-align:center;'>{t['motto']}</p>", unsafe_allow_html=True)
 
-# --- استدعاء الوكيل صوني (المحرك الخارجي) ---
-# قمنا بتمرير دالة الذاكرة ليبقى صوني متصلاً بسجل العمليات
+# استدعاء الوكيل صوني المطور
+render_sony_interface(add_to_memory)
+
+# استعادة أزرار التحكم الذكي
 st.divider()
-render_sony_interface(add_to_memory) 
-st.divider()
-
-# --- بقية وظائف النظام (Smart Controls) ---
-st.subheader("🏠🚗 Smart Control Dashboard")
-c1, c2 = st.columns(2)
-with c1:
-    if st.button("Start Car 🔑"):
+st.subheader(f"🏠🚗 Control Hub")
+ca, cb = st.columns(2)
+with ca:
+    if st.button(t['car']):
         st.success("🚗 Engine On!"); add_to_memory("Car Started")
-with c2:
-    if st.button("Manage Home 🏠"):
+with cb:
+    if st.button(t['home']):
         st.toast("🏠 Home Secure"); add_to_memory("Home Managed")
 
-# --- تنفيذ الصفقة ---
+# تنفيذ الصفقة
 st.divider()
-if st.button("Global Deal Execution 🚀", type="primary", use_container_width=True):
+st.metric("System Stability", "100%", "Secure")
+if st.button(t['buy'], type="primary", use_container_width=True):
     st.balloons()
-    add_to_memory("Deal Concluded Successfully")
-    st.success("Transaction Validated by Sony AI Agent ✅")
+    st.success(t['success'])
+    add_to_memory("Deal Concluded")
 
-# --- التعرف البيومتري ---
+# التعرف البيومتري
 st.divider()
-st.subheader("👤 Identity Verification")
-img = st.camera_input("Verify for Pitch Day")
+st.subheader("👤 Biometric Face Recognition")
+img = st.camera_input("Verify Identity")
 if img:
-    st.success("Identity Confirmed ✅"); add_to_memory("Face ID Verified")
-
+    st.success("Face Verified ✅"); add_to_memory("Face ID Verified")
