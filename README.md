@@ -1,6 +1,7 @@
 # 🌟 FlashDeal Star (AI-Powered Financial Agent)
 
 > **Slogan:** Talk. Pay. Done.
+## ​🔑 Quick Access & System Testing: Use the 2026 activation code: FLASH_2026 to trigger the FlashDeal Star protocol and experience the interface stability.
 
 **FlashDeal Star** is a revolutionary financial ecosystem that leverages Voice AI to execute transactions with unprecedented speed and security. Our mission is to make digital payments accessible to everyone through simple voice commands and advanced multimodal biometric authentication.
 
