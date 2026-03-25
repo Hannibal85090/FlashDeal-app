@@ -1,3 +1,6 @@
+# --- FlashDeal Star: Core Dependencies ---
+# المخطط الأساسي لتشغيل الكاميرا والذكاء الاصطناعي والوكيل الاقتصادي
+
 streamlit
 opencv-python-headless
 mediapipe==0.10.11
