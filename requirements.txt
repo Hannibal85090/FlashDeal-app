@@ -5,3 +5,4 @@ mediapipe
 numpy
 protobuf
 streamlit-mic-recorder
+uuid
