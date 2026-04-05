@@ -49,4 +49,4 @@ jobs:
       run: |
         echo "Initializing SIM Protocol Bridge..."
         echo "Car Device Interface: STANDBY & ACTIVE."
-        echo "Final Status: ALL SYSTEMS GO."
+        echo "Final Status: ALL SYSTEMS  GO."
