@@ -1,9 +1,0 @@
-name: flashdeal-env
-channels:
-  - defaults
-dependencies:
-  - python=3.10
-  - pip
-  - pip:
-    - flask  # أو أي مكتبات أخرى يستخدمها تطبيقك
-
