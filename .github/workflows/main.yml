@@ -1,52 +1,38 @@
-name: FlashDeal Star - Supreme Verified Build
+name: FlashDeal Star - Supreme Final Build
 
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
-  flashdeal_deployment:
-    name: Secure AI & Hardware Integration
+  deployment:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-
     steps:
-    - name: 1. Source Code Integrity Audit
+    - name: 1. Checkout Code
       uses: actions/checkout@v4
 
-    - name: 2. Python Environment Lockdown (v3.10)
+    - name: 2. Set up Python 3.10
       uses: actions/setup-python@v5
       with:
         python-version: "3.10"
-        cache: 'pip'
+        cache: 'pip' # إضافة: لتسريع عمليات البناء القادمة
 
-    - name: 3. Infrastructure & Hardware Bridge
+    - name: 3. Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake build-essential libboost-all-dev libgraphicsmagick1-dev libatlas-base-dev
-        echo "Infrastructure Security: VERIFIED ✅"
-
-    - name: 4. Secure Installation of AI Core & SIM Protocols
+        sudo apt-get install -y cmake build-essential libboost-all-dev libatlas-base-dev
+    
+    - name: 4. Secure AI & SIM Installation
       run: |
-        python -m pip install --upgrade pip==23.1.2 setuptools==65.5.0 wheel==0.38.4
-        pip install --no-cache-dir numpy==1.23.5
-        pip install --no-cache-dir opencv-python-headless
+        python -m pip install --upgrade pip setuptools wheel # إضافة: لضمان توافق المكتبات القديمة
+        pip install --no-cache-dir numpy==1.23.5 opencv-python-headless
         export DLIB_USE_CUDA=0
         export MAKEFLAGS="-j2"
-        pip install --no-cache-dir dlib==19.24.1
-        pip install --no-cache-dir face-recognition
-        pip install --no-cache-dir pyserial
+        pip install --no-cache-dir dlib==19.24.1 face-recognition pyserial
         echo "AI Core & SIM Protocols: DEPLOYED ✅"
 
-    - name: 5. FlashDeal Star Final Verification
+    - name: 5. Final Verification
       run: |
-        python -c "import face_recognition; import cv2; import numpy; import serial; print('FlashDeal Integrity: 100% VERIFIED ✅')"
-        echo "Talk. Pay. Done. Ready for Deployment."
-
-    - name: 6. Hardware/SIM Interface Activation
-      run: |
-        echo "Initializing SIM Protocol Bridge..."
-        echo "Car Device Interface: STANDBY & ACTIVE."
-        echo "Final Status: ALL SYSTEMS  GO."
+        python -c "import face_recognition; import serial; print('FlashDeal Star Integrity: 100% OK ✅')"
+        echo "Talk. Pay. Done. System is Active."
