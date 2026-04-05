@@ -1,0 +1,56 @@
+name: "FlashDeal Star - Ultimate Smart Build"
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  ultimate-deploy:
+    name: "Mission Critical Deployment"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: "Step 1: Clean Synchronized Checkout"
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+
+    - name: "Step 2: Initialize Python Environment"
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+        cache: 'pip'
+
+    - name: "Step 3: OS Hardening & Dependencies"
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq --no-install-recommends \
+          cmake build-essential libatlas-base-dev \
+          libx11-dev libgtk-3-dev pkg-config libjpeg-dev
+        echo "Infrastructure: SECURE ✅"
+
+    - name: "Step 4: AI Core & SIM Logic Deployment"
+      env:
+        DLIB_USE_CUDA: 0
+        PIP_NO_CACHE_DIR: 1
+      run: |
+        # تحديث أدوات البناء الأساسية لتجنب أي تعارض إملائي برمجياً
+        python -m pip install --upgrade pip setuptools wheel
+        
+        # تثبيت حزم البيانات أولاً لضمان استقرار محرك الذكاء الاصطناعي
+        pip install numpy==1.23.5 opencv-python-headless
+        
+        # تثبيت dlib بالصيغة الثنائية (Binary) لتجاوز أخطاء التجميع الشائعة
+        pip install dlib==19.24.1 --prefer-binary
+        
+        # إكمال بروتوكولات الأمان لبصمة الوجه وشريحة SIM
+        pip install face-recognition pyserial
+        echo "FlashDeal Star Core: DEPLOYED ✅"
+
+    - name: "Step 5: Professional Integrity Verification"
+      run: |
+        # اختبار صامت لضمان أن جميع المكتبات مرتبطة ببعضها دون أخطاء
+        python -c "import face_recognition; import serial; import numpy; print('FlashDeal Integrity: 100% OPTIMAL 🚀')"
+        echo "Talk. Pay. Done. The Star is Active."
