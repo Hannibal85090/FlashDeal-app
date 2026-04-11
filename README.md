@@ -34,6 +34,17 @@ To access the full suite of the **Saden Security Protocol** and experience the i
 * **Framework:** Streamlit (Python)
 * **AI Engine:** Gemini Live Integration & MediaPipe
 * **Deployment:** GitHub & Streamlit Cloud
+...
 
+### For any inquiries, please click on this link: https://copilot.microsoft.com/shares/ewLD6byuucEDfTbS7uAp4 .
+
+...
+###  🔗 Flashdale Star Roadmap Link: https://1drv.ms/b/c/9b0dbb9051111575/IQDWTDoPZEZ2S6ObLfPnBBQNAfOZXK34dG0PugjMtnme9Lw
+Or this : https://1drv.ms/b/c/9b0dbb9051111575/IQDWTDoPZEZ2S6ObLfPnBBQNAfOZXK34dG0PugjMtnme9Lw
+
+...
+###  FlashDeal Terms of Service
+
+https://copilot.microsoft.com/shares/pages/oj3nqFNGRaHRme2WBuvet
 ---
 **FlashDeal Innovation Team 2026.** *Securing the future, one star at a time.*
