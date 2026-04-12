@@ -2,7 +2,7 @@
 
 Welcome to the future of AI-driven finance and security. **FlashDeal Star** is a cutting-edge platform designed to bridge the gap between human intent and automated agentic actions.
 
-### 🚀 [Launch Live Demo](https://flashdeal-app-cnxaabppckpqqzso6crbeh.streamlit.app/)
+### 🚀 [Launch Live Demo](https://flashdeal-app-xg4clkihabuapq7nfdjwek.streamlit.app/)
 
 ---
 
